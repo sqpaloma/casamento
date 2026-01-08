@@ -17,28 +17,8 @@ export default function HeroSection() {
             {/* Overlay escuro para melhorar legibilidade */}
             <div className="absolute inset-0 bg-black/20" />
 
-            {/* Nomes - aparecem após 10s */}
-            <div className="absolute inset-0 flex items-start justify-center pt-18 md:pt-20">
-                <div
-                    className="text-center opacity-0 animate-fade-in"
-                    style={{
-                        animationDelay: "5s",
-                        animationFillMode: "forwards",
-                        fontFamily: "'Bickham Script Pro', var(--font-bickham-script), cursive",
-                    }}
-                >
-                    <h1
-                        className="text-6xl md:text-8xl text-shadow-lg lg:text-9xl tracking-wide leading-relaxed drop-shadow-lg"
-                        style={{ color: "#92A8D1" }}
-                    >
-                        Rodrigo
-                        <br />
-                        <span className="text-5xl md:text-7xl lg:text-8xl">&</span>
-                        <br />
-                        Paloma
-                    </h1>
-                </div>
-            </div>
+
+
 
             {/* Seta pulsando para baixo */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in"
