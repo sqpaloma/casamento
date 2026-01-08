@@ -10,6 +10,18 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-bickham-script: var(--font-bickham-script);
+}
+
+/* Bickham Script Pro - Use esta fonte se você tiver os arquivos */
+@font-face {
+  font-family: 'Bickham Script Pro';
+  src: url('/fonts/BickhamScriptPro-Regular.otf') format('opentype'),
+       url('/fonts/BickhamScriptPro-Regular.woff2') format('woff2'),
+       url('/fonts/BickhamScriptPro-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {
