@@ -77,7 +77,7 @@ export default function InvitationOverlay({ onOpen }: InvitationOverlayProps) {
             </div>
 
             <div
-                className={`relative w-[80vw] max-w-[420px] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] rounded-lg overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-[2000ms] ease-out ${hasEntered && !isExiting
+                className={`relative w-[80vw] max-w-[420px] sm:w-[70vw] sm:max-w-[550px] md:w-[60vw] md:max-w-[650px] lg:w-[75vw] lg:max-w-[1000px] rounded-lg overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-[2000ms] ease-out ${hasEntered && !isExiting
                     ? "opacity-100 scale-100 translate-y-0"
                     : isExiting
                         ? "opacity-0 scale-95 translate-y-4"
