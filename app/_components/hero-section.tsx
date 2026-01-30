@@ -1,11 +1,27 @@
 "use client";
 
-export default function HeroSection() {
+import { useRef, useEffect } from "react";
+
+interface HeroSectionProps {
+    shouldPlay?: boolean;
+}
+
+export default function HeroSection({ shouldPlay = false }: HeroSectionProps) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (shouldPlay && videoRef.current) {
+            videoRef.current.play().catch((error) => {
+                console.log("Video autoplay was prevented:", error);
+            });
+        }
+    }, [shouldPlay]);
+
     return (
         <section className="relative w-screen h-screen overflow-hidden -mx-[calc((100vw-100%)/2)]">
             {/* Video de fundo em fullscreen */}
             <video
-                autoPlay
+                ref={videoRef}
                 muted
                 loop
                 playsInline
@@ -15,7 +31,7 @@ export default function HeroSection() {
             </video>
 
             {/* Overlay escuro para melhorar legibilidade */}
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0" />
 
 
 

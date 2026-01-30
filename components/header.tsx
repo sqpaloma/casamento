@@ -18,7 +18,7 @@ export default function Header() {
                     items: [
                         {
                             label: "Nossa História",
-                            href: "/nossa-historia",
+                            href: "/historia",
                         },
                         {
                             label: "Padrinhos",
@@ -78,7 +78,7 @@ export default function Header() {
                                         <div>
                                             <button
                                                 onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
-                                                className="hover:underline flex items-center gap-1"
+                                                className="hover:text-blue-400  text-gray-600 flex items-center gap-1"
                                             >
                                                 {item.label}
                                                 <ChevronDown className={`h-4 w-4 transition-transform ${openMenu === item.label ? 'rotate-180' : ''}`} />
@@ -89,7 +89,7 @@ export default function Header() {
                                                         <div key={subItem.href}>
                                                             <Link
                                                                 href={subItem.href}
-                                                                className="block px-4 py-2 hover:bg-gray-100 text-gray-700"
+                                                                className="block px-4 py-2 hover:bg-gray-100 text-gray-500"
                                                                 onClick={() => setOpenMenu(null)}
                                                             >
                                                                 {subItem.label}
@@ -98,7 +98,7 @@ export default function Header() {
                                                                 <Link
                                                                     key={nestedItem.href}
                                                                     href={nestedItem.href}
-                                                                    className="block px-6 py-2 hover:bg-gray-100 text-gray-600 text-sm"
+                                                                    className="block px-6 py-2 hover:bg-gray-100 text-gray-500 text-sm"
                                                                     onClick={() => setOpenMenu(null)}
                                                                 >
                                                                     {nestedItem.label}
@@ -110,7 +110,7 @@ export default function Header() {
                                             )}
                                         </div>
                                     ) : (
-                                        <Link href={item.href} className="hover:underline flex items-center gap-1">
+                                        <Link href={item.href} className="hover:text-blue-400  text-gray-600 flex items-center gap-1">
                                             {item.label}
                                         </Link>
                                     )}
