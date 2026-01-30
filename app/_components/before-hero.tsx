@@ -73,7 +73,7 @@ export default function InvitationOverlay({ onOpen }: InvitationOverlayProps) {
                 aria-hidden="true"
                 suppressHydrationWarning
             >
-                &#10047; &#10047; &#10047;
+
             </div>
 
             <div
@@ -89,20 +89,20 @@ export default function InvitationOverlay({ onOpen }: InvitationOverlayProps) {
                 <Image
                     src="/convite.png"
                     alt="Convite de casamento - Rodrigo & Paloma"
-                    width={800}
-                    height={1100}
+                    width={2000}
+                    height={2400}
                     priority
                     className="w-full h-auto object-contain"
                 />
             </div>
 
             <p
-                className={`mt-8 text-sm sm:text-base tracking-[0.25em] uppercase text-white/80 font-light transition-all duration-[1500ms] ease-out ${hasEntered && !isExiting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                className={`mt-8 text-sm sm:text-base tracking-[0.25em] uppercase  font-light transition-all duration-[1500ms] ease-out ${hasEntered && !isExiting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                     }`}
                 style={{ transitionDelay: hasEntered ? "400ms" : "0ms" }}
                 suppressHydrationWarning
             >
-                clique para abrir
+
             </p>
 
             <span
