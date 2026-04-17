@@ -8,7 +8,12 @@
  * @module
  */
 
+import type * as gifts from "../gifts.js";
+import type * as lib_admin from "../lib/admin.js";
 import type * as messages from "../messages.js";
+import type * as payments from "../payments.js";
+import type * as seed from "../seed.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +22,12 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  gifts: typeof gifts;
+  "lib/admin": typeof lib_admin;
   messages: typeof messages;
+  payments: typeof payments;
+  seed: typeof seed;
+  users: typeof users;
 }>;
 
 /**

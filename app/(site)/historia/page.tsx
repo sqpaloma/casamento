@@ -7,8 +7,8 @@ type Chapter = { year: string; title: string; text: string };
 
 const chapters: Chapter[] = [
   {
-    year: "2018",
-    title: "O primeiro olhar",
+    year: " - 2022",
+    title: "O primeiro \"match\"",
     text: "Uma festa cheia, um instante impossível de explicar. Nos vimos no meio da multidão — e o resto do mundo silenciou por alguns segundos.",
   },
   {

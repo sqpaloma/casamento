@@ -1,23 +1,37 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAdmin } from "./lib/admin";
+
+const messageObject = v.object({
+  _id: v.id("messages"),
+  _creationTime: v.number(),
+  name: v.string(),
+  message: v.string(),
+  createdAt: v.number(),
+});
 
 export const list = query({
   args: {},
-  returns: v.array(
-    v.object({
-      _id: v.id("messages"),
-      _creationTime: v.number(),
-      name: v.string(),
-      message: v.string(),
-      createdAt: v.number(),
-    })
-  ),
+  returns: v.array(messageObject),
   handler: async (ctx) => {
     return await ctx.db
       .query("messages")
       .withIndex("by_createdAt")
       .order("desc")
       .take(100);
+  },
+});
+
+export const listAdmin = query({
+  args: {},
+  returns: v.array(messageObject),
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    return await ctx.db
+      .query("messages")
+      .withIndex("by_createdAt")
+      .order("desc")
+      .collect();
   },
 });
 
@@ -38,5 +52,25 @@ export const create = mutation({
       message,
       createdAt: Date.now(),
     });
+  },
+});
+
+export const remove = mutation({
+  args: { id: v.id("messages") },
+  returns: v.null(),
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    await ctx.db.delete(args.id);
+    return null;
+  },
+});
+
+export const countAdmin = query({
+  args: {},
+  returns: v.number(),
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    const all = await ctx.db.query("messages").collect();
+    return all.length;
   },
 });
