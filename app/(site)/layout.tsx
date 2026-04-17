@@ -1,5 +1,5 @@
 import Navigation from "@/components/wedding/navigation";
-import MonogramVeil from "@/components/wedding/monogram-veil";
+import SiteBackground from "@/components/wedding/site-background";
 
 export default function SiteLayout({
   children,
@@ -7,8 +7,8 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-screen grain-overlay">
-      <MonogramVeil letters="R&P" />
+    <div className="relative min-h-screen grain-overlay bg-transparent">
+      <SiteBackground />
       <Navigation />
       <main className="relative z-10">{children}</main>
     </div>

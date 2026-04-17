@@ -21,7 +21,7 @@ const events: Event[] = [
   {
     title: "Chá de Lingerie",
     subtitle: "Só para elas",
-    date: "18 · Out · 2025",
+    date: "13 · Jun · 2026",
     time: "15h",
     location: "Casa da Ana · Jardins, SP",
     dress: "Brunch chic · tons pastéis",
@@ -31,7 +31,7 @@ const events: Event[] = [
   {
     title: "Bar dos Noivos",
     subtitle: "Só para eles",
-    date: "25 · Out · 2025",
+    date: "13 · Jun · 2026",
     time: "20h",
     location: "Bar Luz · Vila Madalena, SP",
     dress: "Casual moderno",

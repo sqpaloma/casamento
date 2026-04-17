@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 import Countdown from "@/components/wedding/countdown";
 import MetaLabel from "@/components/wedding/meta-label";
+import PagesCarousel from "@/components/wedding/pages-carousel";
 
 export default function HomePage() {
   return (
     <div className="relative min-h-screen">
       <section className="relative min-h-screen w-full flex flex-col justify-between px-[5vw] md:px-[8vw] pt-28 pb-10 overflow-hidden">
-        <div className="absolute inset-0 -z-0 bg-gradient-to-b from-white/20 via-transparent to-white/40" />
 
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -40,7 +40,7 @@ export default function HomePage() {
           <div className="flex items-center gap-4 mt-4 justify-center">
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
             <span className="font-mono text-xs tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
-              15 · 11 · 2025
+              05 · 09 · 2026
             </span>
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
           </div>
@@ -92,13 +92,17 @@ export default function HomePage() {
             </p>
           </div>
         </div>
+
+        <div className="mt-20 md:mt-28">
+          <PagesCarousel />
+        </div>
       </section>
 
       <section className="relative px-[5vw] md:px-[8vw] py-10 border-t border-[hsl(var(--border))]">
         <div className="flex flex-wrap gap-6 md:gap-12 items-center justify-between">
           <span className="meta-label">23.5505° S · 46.6333° W</span>
-          <span className="meta-label">Duração estimada: 8h</span>
-          <span className="meta-label">Dress code: Black Tie</span>
+          <span className="meta-label">Duração estimada: 10h</span>
+          <span className="meta-label">Dress code: Traje de Gala</span>
         </div>
       </section>
     </div>

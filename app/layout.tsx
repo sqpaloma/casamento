@@ -24,7 +24,7 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Paloma & Rodrigo",
-  description: "O casamento de Paloma & Rodrigo — 15 · Nov · 2025",
+  description: "O casamento de Paloma & Rodrigo — 05 · Set · 2026",
 };
 
 export default function RootLayout({

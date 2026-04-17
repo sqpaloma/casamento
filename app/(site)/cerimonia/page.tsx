@@ -67,7 +67,7 @@ export default function CerimoniaPage() {
           &amp; Recepção
         </h1>
         <div className="mt-10 grid md:grid-cols-3 gap-8 max-w-5xl">
-          <InfoBlock icon={Calendar} label="Data" value="15 de Novembro, 2025" />
+          <InfoBlock icon={Calendar} label="Data" value="05 de Setembro, 2026" />
           <InfoBlock icon={Clock} label="Horário" value="A partir das 15h30" />
           <InfoBlock icon={MapPin} label="Local" value="Espaço Luz · São Paulo" />
         </div>

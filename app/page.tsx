@@ -58,7 +58,7 @@ export default function ThresholdPage() {
         <div className="w-full flex items-center justify-between">
           <span className="meta-label">Convite · N° 001</span>
           <span className="meta-label hidden md:inline">
-            15.11.2025 · São Paulo
+            05.09.2026 · São Paulo
           </span>
         </div>
 
@@ -100,7 +100,7 @@ export default function ThresholdPage() {
           >
             <span className="h-px w-12 bg-[hsl(var(--accent))]" />
             <span className="font-mono text-sm tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
-              15 · NOV · 2025
+              05 · SET · 2026
             </span>
             <span className="h-px w-12 bg-[hsl(var(--accent))]" />
           </motion.div>
