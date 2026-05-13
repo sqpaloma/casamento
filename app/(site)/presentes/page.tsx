@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useQuery } from "convex/react";
 import {
   CheckCircle2,
+  Copy,
   ExternalLink,
   Gift,
   Loader2,
@@ -17,12 +19,36 @@ import MetaLabel from "@/components/wedding/meta-label";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-provider";
 
+const PIX_KEY = "11914246379";
+
 export default function ListaPresentesPage() {
   const presentes = useQuery(api.gifts.listPublic);
   const cart = useCart();
   const isLoading = presentes === undefined;
   const lista = presentes ?? [];
   const categorias = Array.from(new Set(lista.map((p) => p.categoria)));
+  const [pixCopied, setPixCopied] = useState(false);
+
+  const handleCopyPix = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(PIX_KEY);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = PIX_KEY;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      setPixCopied(true);
+      setTimeout(() => setPixCopied(false), 2500);
+    } catch {
+      setPixCopied(false);
+    }
+  };
 
   return (
     <div className="relative pt-32 pb-20">
@@ -205,12 +231,26 @@ export default function ListaPresentesPage() {
               Chave PIX
             </h3>
             <p className="text-[hsl(var(--muted-foreground))] leading-relaxed">
-              Prefere contribuir para nossa lua de mel? Use a chave abaixo.
+              Prefere contribuir para nossa lua de mel? Copie a chave abaixo.
             </p>
           </div>
-          <div className="border border-[hsl(var(--border))] px-8 py-5 font-mono text-lg text-[hsl(var(--primary))] bg-background/80">
-            paloma.rodrigo@casamento.com
-          </div>
+          <Button
+            type="button"
+            onClick={handleCopyPix}
+            aria-live="polite"
+            className="group gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-8 py-5"
+          >
+            {pixCopied ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+            <span className="meta-label text-[hsl(var(--primary-foreground))] group-hover:text-[hsl(var(--primary))]">
+              {pixCopied
+                ? "PIX copiado!"
+                : "Clique para copiar o PIX dos noivos (celular)"}
+            </span>
+          </Button>
         </div>
       </section>
     </div>
