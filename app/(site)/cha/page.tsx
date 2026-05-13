@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Calendar, MapPin, Shirt, Gift } from "lucide-react";
+import { Calendar, MapPin, Gift } from "lucide-react";
 import MetaLabel from "@/components/wedding/meta-label";
 import { Button } from "@/components/ui/button";
 
@@ -14,6 +14,8 @@ type Event = {
   time: string;
   location: string;
   detail: string;
+  href: string;
+  ctaLabel: string;
 };
 
 const events: Event[] = [
@@ -25,6 +27,8 @@ const events: Event[] = [
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     detail:
       "Tarde de risada, champagne e presentes íntimos. Pedimos que cada convidada traga uma peça da lista ou uma mensagem manuscrita.",
+    href: "/cha/lingerie",
+    ctaLabel: "Ver lista de lingerie",
   },
   {
     title: "Bar dos Noivos",
@@ -34,21 +38,23 @@ const events: Event[] = [
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     detail:
       "Tarde de whisky, charutos e brindes à amizade. Venha contar histórias — e deixar uma ou duas aos noivos.",
+    href: "/cha/bar",
+    ctaLabel: "Ver lista do bar",
   },
 ];
 
 export default function ChaPage() {
   return (
-    <div className="relative pt-32 pb-20">
-      <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
-        <MetaLabel className="mb-6">04 · Pré-celebração</MetaLabel>
+    <div className="relative pt-24 pb-10">
+      <section className="px-[5vw] md:px-[8vw] mb-8 md:mb-10">
+        <MetaLabel className="mb-3">04 · Pré-celebração</MetaLabel>
         <h1
           className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-          style={{ fontSize: "clamp(3rem, 10vw, 9rem)", letterSpacing: "-0.04em" }}
+          style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)", letterSpacing: "-0.04em" }}
         >
           Chá &amp; Bar
         </h1>
-        <p className="mt-10 max-w-xl text-lg text-[hsl(var(--muted-foreground))] leading-relaxed">
+        <p className="mt-4 max-w-xl text-base text-[hsl(var(--muted-foreground))] leading-relaxed">
           Duas celebrações íntimas antes do grande dia. Momentos reservados para
           quem constrói com a gente, dia após dia.
         </p>
@@ -63,9 +69,9 @@ export default function ChaPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="bg-background p-8 md:p-12 flex flex-col min-h-[520px]"
+              className="bg-background p-6 md:p-8 flex flex-col"
             >
-              <div className="flex items-start justify-between mb-10">
+              <div className="flex items-start justify-between mb-5">
                 <MetaLabel>{e.subtitle}</MetaLabel>
                 <span className="font-mono text-xs text-[hsl(var(--primary))]">
                   0{i + 1}
@@ -74,16 +80,16 @@ export default function ChaPage() {
 
               <h2
                 className="font-display italic leading-[0.95] mb-2"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
+                style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
               >
                 {e.title}
               </h2>
 
-              <p className="text-[hsl(var(--muted-foreground))] leading-relaxed my-8 text-lg max-w-md">
+              <p className="text-[hsl(var(--muted-foreground))] leading-relaxed my-4 text-base max-w-md">
                 {e.detail}
               </p>
 
-              <div className="mt-auto space-y-5 pt-8 border-t border-[hsl(var(--border))]">
+              <div className="mt-auto space-y-3 pt-5 border-t border-[hsl(var(--border))]">
                 <DetailRow icon={Calendar} label="Quando" value={`${e.date} · ${e.time}`} />
                 <DetailRow icon={MapPin} label="Onde" value={e.location} />
               </div>
@@ -91,12 +97,12 @@ export default function ChaPage() {
               <Button
                 asChild
                 variant="link"
-                className="group mt-10 h-auto p-0 self-start gap-3 text-[hsl(var(--primary))] no-underline hover:no-underline"
+                className="group mt-5 h-auto p-0 self-start gap-3 text-[hsl(var(--primary))] no-underline hover:no-underline"
               >
-                <Link href="/presentes">
+                <Link href={e.href}>
                   <Gift className="w-4 h-4" />
                   <span className="meta-label text-[hsl(var(--primary))]">
-                    Ver lista de presentes
+                    {e.ctaLabel}
                   </span>
                   <span className="h-px w-8 bg-[hsl(var(--primary))] group-hover:w-16 transition-all" />
                 </Link>
