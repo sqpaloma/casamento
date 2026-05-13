@@ -1,6 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
-import { requireAdmin } from "./lib/admin";
+import { internalMutation, mutation } from "./_generated/server";
 
 type SeedGift = {
   categoria: string;
@@ -372,7 +371,7 @@ const PRODUCTION_GIFTS: SeedGift[] = [
   },
 ];
 
-export const seedProductionGifts = mutation({
+export const seedProductionGifts = internalMutation({
   args: {},
   returns: v.object({
     inserted: v.number(),
@@ -380,8 +379,6 @@ export const seedProductionGifts = mutation({
     total: v.number(),
   }),
   handler: async (ctx) => {
-    await requireAdmin(ctx);
-
     const existing = await ctx.db.query("gifts").collect();
     const existingTitles = new Set(
       existing.map((g) => g.titulo.trim().toLowerCase())
