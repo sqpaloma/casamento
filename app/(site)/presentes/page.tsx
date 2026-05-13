@@ -55,12 +55,10 @@ export default function ListaPresentesPage() {
       <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
         <MetaLabel className="mb-6">08 · Lista</MetaLabel>
         <h1
-          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-          style={{ fontSize: "clamp(3rem, 10vw, 9rem)", letterSpacing: "-0.04em" }}
+          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] whitespace-nowrap"
+          style={{ fontSize: "clamp(2.5rem, 9vw, 8rem)", letterSpacing: "-0.04em" }}
         >
-          Lista de
-          <br />
-          Presentes
+          Lista de Presentes
         </h1>
         <p className="mt-10 max-w-xl text-lg text-[hsl(var(--muted-foreground))] leading-relaxed">
           Sua presença já é o nosso maior presente. Mas se quiser nos
