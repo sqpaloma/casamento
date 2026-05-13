@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMutation, useQuery } from "convex/react";
 import {
@@ -11,6 +11,8 @@ import {
   X,
   Check,
   ExternalLink,
+  Upload,
+  Image as ImageIcon,
 } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import type { Doc, Id } from "@/convex/_generated/dataModel";
@@ -57,6 +59,8 @@ export default function AdminPresentesPage() {
   const update = useMutation(api.gifts.update);
   const remove = useMutation(api.gifts.remove);
   const setStatus = useMutation(api.gifts.setStatus);
+  const generateUploadUrl = useMutation(api.gifts.generateUploadUrl);
+  const getStorageUrl = useMutation(api.gifts.getStorageUrl);
 
   const [formOpen, setFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<Id<"gifts"> | null>(null);
@@ -64,6 +68,8 @@ export default function AdminPresentesPage() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<"todos" | GiftStatus>("todos");
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isLoading = gifts === undefined;
 
@@ -162,6 +168,45 @@ export default function AdminPresentesPage() {
       await setStatus({ id, status });
     } catch (err) {
       alert(err instanceof Error ? err.message : "Erro ao atualizar.");
+    }
+  };
+
+  const handleFileUpload = async (file: File) => {
+    if (isUploading) return;
+    setError(null);
+    if (!file.type.startsWith("image/")) {
+      setError("Selecione um arquivo de imagem válido.");
+      return;
+    }
+    const MAX_SIZE = 8 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
+      setError("A imagem deve ter no máximo 8MB.");
+      return;
+    }
+    setIsUploading(true);
+    try {
+      const uploadUrl = await generateUploadUrl();
+      const result = await fetch(uploadUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      if (!result.ok) {
+        throw new Error("Falha no upload da imagem.");
+      }
+      const { storageId } = (await result.json()) as {
+        storageId: Id<"_storage">;
+      };
+      const url = await getStorageUrl({ storageId });
+      if (!url) throw new Error("Não foi possível obter a URL da imagem.");
+      setForm((f) => ({ ...f, imagem: url }));
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Erro ao enviar imagem."
+      );
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -411,14 +456,80 @@ export default function AdminPresentesPage() {
                   type="url"
                 />
 
-                <FormField
-                  id="imagem"
-                  label="URL da imagem (opcional)"
-                  value={form.imagem}
-                  onChange={(v) => setForm((f) => ({ ...f, imagem: v }))}
-                  placeholder="https://..."
-                  type="url"
-                />
+                <div>
+                  <Label htmlFor="imagem" className="meta-label block mb-2">
+                    Imagem (opcional)
+                  </Label>
+                  <div className="flex flex-col md:flex-row md:items-start gap-4">
+                    {form.imagem ? (
+                      <div className="relative w-32 h-32 shrink-0 border border-[hsl(var(--border))] overflow-hidden bg-[hsl(var(--secondary))]/40">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={form.imagem}
+                          alt="Pré-visualização"
+                          className="w-full h-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setForm((f) => ({ ...f, imagem: "" }))
+                          }
+                          className="absolute top-1 right-1 bg-[hsl(var(--background))]/90 border border-[hsl(var(--border))] p-1 hover:text-[hsl(var(--destructive))]"
+                          aria-label="Remover imagem"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="w-32 h-32 shrink-0 border border-dashed border-[hsl(var(--border))] flex items-center justify-center text-[hsl(var(--muted-foreground))]">
+                        <ImageIcon className="w-6 h-6" />
+                      </div>
+                    )}
+
+                    <div className="flex-1 space-y-3">
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) void handleFileUpload(file);
+                        }}
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isUploading}
+                        className="gap-2 rounded-none border border-[hsl(var(--border))] hover:border-[hsl(var(--primary))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-4 py-3"
+                      >
+                        {isUploading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Upload className="w-4 h-4" />
+                        )}
+                        <span className="meta-label">
+                          {isUploading
+                            ? "Enviando..."
+                            : form.imagem
+                              ? "Trocar imagem"
+                              : "Enviar imagem"}
+                        </span>
+                      </Button>
+                      <Input
+                        id="imagem"
+                        type="url"
+                        value={form.imagem}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, imagem: e.target.value }))
+                        }
+                        placeholder="ou cole uma URL https://..."
+                        className="w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))]/60"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <div>
                   <Label htmlFor="status" className="meta-label block mb-2">

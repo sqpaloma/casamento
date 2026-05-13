@@ -1,5 +1,6 @@
 import Navigation from "@/components/wedding/navigation";
 import SiteBackground from "@/components/wedding/site-background";
+import FloatingGiftButton from "@/components/wedding/floating-gift-button";
 import { CartProvider } from "@/components/cart/cart-provider";
 import CartDrawer from "@/components/cart/cart-drawer";
 
@@ -15,6 +16,7 @@ export default function SiteLayout({
         <Navigation />
         <main className="relative z-10">{children}</main>
         <CartDrawer />
+        <FloatingGiftButton />
       </div>
     </CartProvider>
   );

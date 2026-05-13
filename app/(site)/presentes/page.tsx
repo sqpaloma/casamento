@@ -96,6 +96,20 @@ export default function ListaPresentesPage() {
                   const inCart = cart.has(item._id);
                   const semPreco = typeof item.preco !== "number";
 
+                  const canAddOnHover =
+                    !isPago && !isReservado && !semPreco && !inCart;
+
+                  const handleHoverAdd = () => {
+                    if (!canAddOnHover) return;
+                    cart.add({
+                      giftId: item._id,
+                      titulo: item.titulo,
+                      categoria: item.categoria,
+                      preco: item.preco ?? 0,
+                      imagem: item.imagem,
+                    });
+                  };
+
                   return (
                     <motion.article
                       key={item._id}
@@ -103,18 +117,27 @@ export default function ListaPresentesPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: i * 0.08 }}
-                      className={`group bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${
+                      onMouseEnter={handleHoverAdd}
+                      className={`group relative overflow-hidden bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${
                         isPago || isReservado
                           ? "opacity-60"
-                          : "hover:bg-[hsl(var(--secondary))]"
+                          : "hover:bg-[hsl(var(--secondary))] cursor-pointer"
                       }`}
                     >
-                      <div className="flex items-start justify-between">
+                      {item.imagem && (
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-25 transition-opacity duration-500"
+                          style={{ backgroundImage: `url(${item.imagem})` }}
+                        />
+                      )}
+
+                      <div className="relative z-10 flex items-start justify-between">
                         <Gift className="w-4 h-4 text-[hsl(var(--accent))] group-hover:text-[hsl(var(--primary))] transition-colors mt-1" />
                         <span className="meta-label">{item.loja}</span>
                       </div>
 
-                      <div className="flex-1">
+                      <div className="relative z-10 flex-1">
                         <h3 className="font-display italic text-2xl md:text-3xl mb-2 leading-tight group-hover:text-[hsl(var(--primary))] transition-colors">
                           {item.titulo}
                         </h3>
@@ -128,7 +151,7 @@ export default function ListaPresentesPage() {
                         )}
                       </div>
 
-                      <div className="self-stretch pt-4 mt-2 border-t border-[hsl(var(--border))] flex items-center justify-between gap-3">
+                      <div className="relative z-10 self-stretch pt-4 mt-2 border-t border-[hsl(var(--border))] flex items-center justify-between gap-3">
                         {isPago ? (
                           <span className="meta-label text-[hsl(var(--accent))] inline-flex items-center gap-2">
                             <CheckCircle2 className="w-3 h-3" />

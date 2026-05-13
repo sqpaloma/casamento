@@ -152,6 +152,24 @@ export const remove = mutation({
   },
 });
 
+export const generateUploadUrl = mutation({
+  args: {},
+  returns: v.string(),
+  handler: async (ctx) => {
+    await requireAdmin(ctx);
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+export const getStorageUrl = mutation({
+  args: { storageId: v.id("_storage") },
+  returns: v.union(v.string(), v.null()),
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    return await ctx.storage.getUrl(args.storageId);
+  },
+});
+
 export const stats = query({
   args: {},
   returns: v.object({
