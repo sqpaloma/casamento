@@ -13,7 +13,6 @@ type Event = {
   date: string;
   time: string;
   location: string;
-  dress: string;
   detail: string;
 };
 
@@ -24,7 +23,6 @@ const events: Event[] = [
     date: "13 · Jun · 2026",
     time: "15h",
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
-    dress: "Brunch chic · tons pastéis",
     detail:
       "Tarde de risada, champagne e presentes íntimos. Pedimos que cada convidada traga uma peça da lista ou uma mensagem manuscrita.",
   },
@@ -34,7 +32,6 @@ const events: Event[] = [
     date: "13 · Jun · 2026",
     time: "15h",
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
-    dress: "Casual moderno",
     detail:
       "Tarde de whisky, charutos e brindes à amizade. Venha contar histórias — e deixar uma ou duas aos noivos.",
   },
@@ -89,7 +86,6 @@ export default function ChaPage() {
               <div className="mt-auto space-y-5 pt-8 border-t border-[hsl(var(--border))]">
                 <DetailRow icon={Calendar} label="Quando" value={`${e.date} · ${e.time}`} />
                 <DetailRow icon={MapPin} label="Onde" value={e.location} />
-                <DetailRow icon={Shirt} label="Dress code" value={e.dress} />
               </div>
 
               <Button
