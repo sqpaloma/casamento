@@ -23,7 +23,7 @@ const events: Event[] = [
     subtitle: "Só para elas",
     date: "13 · Jun · 2026",
     time: "15h",
-    location: "Casa da Ana · Jardins, SP",
+    location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     dress: "Brunch chic · tons pastéis",
     detail:
       "Tarde de risada, champagne e presentes íntimos. Pedimos que cada convidada traga uma peça da lista ou uma mensagem manuscrita.",
@@ -33,10 +33,10 @@ const events: Event[] = [
     subtitle: "Só para eles",
     date: "13 · Jun · 2026",
     time: "20h",
-    location: "Bar Luz · Vila Madalena, SP",
+    location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     dress: "Casual moderno",
     detail:
-      "Uma noite de whisky, charutos e brindes à amizade. Venha contar histórias — e talvez deixar uma ou duas aos noivos.",
+      "Tarde de whisky, charutos e brindes à amizade. Venha contar histórias — e deixar uma ou duas aos noivos.",
   },
 ];
 
