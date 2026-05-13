@@ -32,7 +32,7 @@ const events: Event[] = [
     title: "Bar dos Noivos",
     subtitle: "Só para eles",
     date: "13 · Jun · 2026",
-    time: "20h",
+    time: "15h",
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     dress: "Casual moderno",
     detail:
