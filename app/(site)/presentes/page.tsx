@@ -52,8 +52,8 @@ export default function ListaPresentesPage() {
 
   return (
     <div className="relative pt-32 pb-20">
-      <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
-        <MetaLabel className="mb-6">08 · Lista</MetaLabel>
+      <section className="px-[5vw] md:px-[8vw] mb-10">
+        <MetaLabel className="mb-6">09 · Lista</MetaLabel>
         <h1
           className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] whitespace-nowrap"
           style={{ fontSize: "clamp(2.5rem, 9vw, 8rem)", letterSpacing: "-0.04em" }}
@@ -116,11 +116,10 @@ export default function ListaPresentesPage() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: i * 0.08 }}
                       onMouseEnter={handleHoverAdd}
-                      className={`group relative overflow-hidden bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${
-                        isPago || isReservado
+                      className={`group relative overflow-hidden bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${isPago || isReservado
                           ? "opacity-60"
                           : "hover:bg-[hsl(var(--secondary))] cursor-pointer"
-                      }`}
+                        }`}
                     >
                       {item.imagem && (
                         <div

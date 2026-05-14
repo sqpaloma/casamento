@@ -51,6 +51,12 @@ const cards: Card[] = [
     },
     {
         num: "08",
+        label: "Galeria",
+        path: "/galeria",
+        description: "Registros do nosso caminho até o grande dia.",
+    },
+    {
+        num: "09",
         label: "Lista de Presentes",
         path: "/presentes",
         description: "Uma forma carinhosa de fazer parte da nossa nova jornada.",

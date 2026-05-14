@@ -51,7 +51,7 @@ export default function PadrinhosPage() {
         }}
       />
 
-      <section className="relative px-[5vw] md:px-[8vw] mb-20 md:mb-28">
+      <section className="relative px-[5vw] md:px-[8vw] mb-10">
         <MetaLabel className="mb-6">03 · Círculo íntimo</MetaLabel>
         <h1
           className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"

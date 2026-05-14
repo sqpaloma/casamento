@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Shirt, Hotel, Car, Gift, Camera, Heart } from "lucide-react";
+import { Shirt, Hotel, Car, Gift, Camera, Heart, CloudSun, UtensilsCrossed, CalendarCheck } from "lucide-react";
 import MetaLabel from "@/components/wedding/meta-label";
 
 type Tip = {
@@ -23,7 +23,7 @@ const tips: Tip[] = [
     icon: Hotel,
     title: "Hospedagem",
     subtitle: "Sugestões",
-    text: "Reservamos tarifas especiais em três hotéis próximos ao Espaço Luz. Consulte a lista completa enviada por e-mail.",
+    text: "Reservamos tarifas especiais em hotéis próximos à Bela Vista e ao Brooklin. Consulte a lista completa enviada por e-mail.",
   },
   {
     icon: Car,
@@ -49,27 +49,45 @@ const tips: Tip[] = [
     subtitle: "Crianças bem-vindas",
     text: "Crianças são bem-vindas para celebrar conosco! O espaço conta com área kids e equipe para cuidar dos pequenos.",
   },
+  {
+    icon: CloudSun,
+    title: "Clima",
+    subtitle: "Setembro em SP",
+    text: "Dias amenos e noites mais frescas. O traje de gala combina com um casaquinho, estola ou pashmina para depois da cerimônia.",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Cardápio",
+    subtitle: "Restrições",
+    text: "Há intolerâncias, alergias ou restrições alimentares importantes? Avise-nos com antecedência para informarmos o buffet.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Confirmação",
+    subtitle: "RSVP",
+    text: "Sua confirmação de presença ajuda no planejamento de lugares e cardápio. Responda pelo convite ou pelo canal que indicarmos.",
+  },
 ];
 
 export default function DicasPage() {
   return (
-    <div className="relative pt-32 pb-20">
-      <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
-        <MetaLabel className="mb-6">07 · Guia do convidado</MetaLabel>
+    <div className="relative pt-28 pb-12 md:pt-28 md:pb-14">
+      <section className="px-[5vw] md:px-[8vw] mb-5 md:mb-6">
+        <MetaLabel className="mb-3 md:mb-4">07 · Guia do convidado</MetaLabel>
         <h1
           className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-          style={{ fontSize: "clamp(3rem, 10vw, 9rem)", letterSpacing: "-0.04em" }}
+          style={{ fontSize: "clamp(2.25rem, 7vw, 4.5rem)", letterSpacing: "-0.04em" }}
         >
           Dicas
         </h1>
-        <p className="mt-10 max-w-xl text-lg text-[hsl(var(--muted-foreground))] leading-relaxed">
+        <p className="mt-3 md:mt-4 max-w-xl text-sm md:text-base text-[hsl(var(--muted-foreground))] leading-snug md:leading-relaxed">
           Tudo o que você precisa para viver conosco o dia inteiro — do traje ao
           transporte, passando por cada pequeno detalhe.
         </p>
       </section>
 
       <section className="px-[5vw] md:px-[8vw]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-[hsl(var(--border))]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[hsl(var(--border))]">
           {tips.map((tip, i) => {
             const Icon = tip.icon;
             return (
@@ -78,25 +96,25 @@ export default function DicasPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: (i % 2) * 0.08 }}
-                className="group bg-background p-8 md:p-12 min-h-[320px] flex flex-col relative overflow-hidden"
+                transition={{ duration: 0.5, delay: (i % 3) * 0.05 }}
+                className="group relative flex min-h-0 flex-col overflow-hidden bg-background p-5 md:p-6"
               >
-                <div className="absolute top-8 right-8 md:top-12 md:right-12">
-                  <Icon className="w-5 h-5 text-[hsl(var(--accent))] group-hover:text-[hsl(var(--primary))] transition-colors" />
+                <div className="absolute right-4 top-4 md:right-5 md:top-5">
+                  <Icon className="h-4 w-4 text-[hsl(var(--accent))] transition-colors group-hover:text-[hsl(var(--primary))]" />
                 </div>
 
-                <MetaLabel className="mb-8">
+                <MetaLabel className="mb-3 pr-8">
                   {String(i + 1).padStart(2, "0")} · {tip.subtitle}
                 </MetaLabel>
 
                 <h3
-                  className="font-display italic leading-[0.95] mb-6"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+                  className="mb-2 font-display italic leading-[0.95]"
+                  style={{ fontSize: "clamp(1.25rem, 2.4vw, 1.75rem)" }}
                 >
                   {tip.title}
                 </h3>
 
-                <p className="text-[hsl(var(--muted-foreground))] leading-[1.7] text-lg max-w-md mt-auto">
+                <p className="max-w-md text-sm leading-relaxed text-[hsl(var(--muted-foreground))] md:text-[0.9375rem] md:leading-snug">
                   {tip.text}
                 </p>
               </motion.article>

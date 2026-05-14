@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Calendar, MapPin, Clock, Plus } from "lucide-react";
+import { Calendar, MapPin, Clock } from "lucide-react";
 import MetaLabel from "@/components/wedding/meta-label";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type ScheduleItem = {
   time: string;
@@ -13,113 +13,134 @@ type ScheduleItem = {
   address: string;
   dress: string;
   description: string;
+  mapsUrl?: string;
 };
+
+const PAROQUIA_MAPS_URL =
+  "https://www.google.com/maps/place/Par%C3%B3quia+Imaculada+Concei%C3%A7%C3%A3o/@-23.5664151,-46.6506689,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce59b93b6794b3:0x62e54d4327f274d6!8m2!3d-23.56642!4d-46.648094!16s%2Fg%2F1tk1p34s?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D";
+
+const PATIO_WELLUCCI_MAPS_URL =
+  "https://www.google.com/maps/place/P%C3%A1tio+Welucci+-+Espa%C3%A7o+para+Eventos/@-23.6074839,-46.6811126,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce50ae6b942bbf:0x6df93c6b92206c90!8m2!3d-23.6074888!4d-46.6785377!16s%2Fg%2F11cs3_672j?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D";
 
 const schedule: ScheduleItem[] = [
   {
-    time: "16:00",
-    title: "Cerimônia",
-    place: "Capela Santa Terezinha",
-    address: "Rua das Oliveiras, 120 · Alto de Pinheiros",
-    dress: "Black Tie",
-    description:
-      "O momento em que dois viram um. Recepção dos convidados a partir das 15h30.",
-  },
-  {
     time: "17:30",
-    title: "Coquetel",
-    place: "Jardim do Espaço Luz",
-    address: "Rua das Oliveiras, 120 · Alto de Pinheiros",
+    title: "Cerimônia",
+    place: "Paróquia Imaculada Conceição",
+    address: "Av. Brigadeiro Luís Antônio, 2071 · Bela Vista, São Paulo",
     dress: "Black Tie",
     description:
-      "Champagne, canapés e o pôr-do-sol enquanto os noivos finalizam as fotos.",
+      "O momento em que dois viram um. Chegue com alguns minutos de antecedência para acomodar-se.",
+    mapsUrl: PAROQUIA_MAPS_URL,
   },
   {
     time: "19:00",
+    title: "Coquetel",
+    place: "Pátio Welucci",
+    address: "R. Texas, 243 · Brooklin, São Paulo",
+    dress: "Black Tie",
+    description:
+      "Champagne, canapés e o pôr-do-sol enquanto os noivos finalizam as fotos.",
+    mapsUrl: PATIO_WELLUCCI_MAPS_URL,
+  },
+  {
+    time: "20:30",
     title: "Recepção",
-    place: "Salão Principal",
-    address: "Espaço Luz · Alto de Pinheiros",
+    place: "Salão — Pátio Welucci",
+    address: "R. Texas, 243 · Brooklin, São Paulo",
     dress: "Black Tie",
     description:
       "Jantar harmonizado, discursos e as primeiras valsas da nova família.",
+    mapsUrl: PATIO_WELLUCCI_MAPS_URL,
   },
   {
-    time: "22:00",
+    time: "23:00",
     title: "Pista",
-    place: "Terraço",
-    address: "Espaço Luz · Alto de Pinheiros",
+    place: "Terraço — Pátio Welucci",
+    address: "R. Texas, 243 · Brooklin, São Paulo",
     dress: "Black Tie · sapatos confortáveis recomendados",
     description: "Bar aberto, DJ e a madrugada toda para celebrar.",
+    mapsUrl: PATIO_WELLUCCI_MAPS_URL,
   },
 ];
 
 export default function CerimoniaPage() {
   return (
     <div className="relative pt-32 pb-20">
-      <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
+      <section className="px-[5vw] md:px-[8vw] mb-10">
         <MetaLabel className="mb-6">05 · O dia</MetaLabel>
         <h1
-          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-          style={{ fontSize: "clamp(3rem, 10vw, 9rem)", letterSpacing: "-0.04em" }}
+          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] whitespace-nowrap"
+          style={{ fontSize: "clamp(2rem, 7vw, 7rem)", letterSpacing: "-0.04em" }}
         >
-          Cerimônia
-          <br />
-          &amp; Recepção
+          Cerimônia &amp; Recepção
         </h1>
-        <div className="mt-10 grid md:grid-cols-3 gap-8 max-w-5xl">
+        <div className="mt-10 grid gap-8 max-w-6xl md:grid-cols-[max-content_max-content_1fr]">
           <InfoBlock icon={Calendar} label="Data" value="05 de Setembro, 2026" />
-          <InfoBlock icon={Clock} label="Horário" value="A partir das 15h30" />
-          <InfoBlock icon={MapPin} label="Local" value="Espaço Luz · São Paulo" />
+          <InfoBlock icon={Clock} label="Horário" value="Cerimônia às 17h30" />
+          <InfoBlock
+            icon={MapPin}
+            label="Local"
+            value="Paróquia Imaculada Conceição · festa no Pátio Welucci"
+            valueClassName="whitespace-nowrap md:overflow-x-auto md:[scrollbar-width:thin]"
+          />
         </div>
       </section>
 
-      <section className="mb-28">
-        <div className="px-[5vw] md:px-[8vw] mb-10 flex items-end justify-between">
+      <section className="mb-10 px-[5vw] md:px-[8vw]">
+        <div className="mb-10">
           <MetaLabel>Cronograma do dia</MetaLabel>
-          <span className="meta-label hidden md:inline">Arraste para o lado →</span>
         </div>
 
-        <div className="overflow-x-auto scrollbar-hide pl-[5vw] md:pl-[8vw]">
-          <div className="flex gap-[1px] bg-[hsl(var(--border))] min-w-max pr-[5vw] md:pr-[8vw]">
-            {schedule.map((s, i) => (
-              <motion.div
-                key={s.time}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
-                className="group bg-background w-[340px] md:w-[420px] p-8 md:p-10 flex flex-col min-h-[440px] hover:bg-[hsl(var(--secondary))]/40 transition-colors duration-500"
-              >
-                <div className="flex items-start justify-between mb-auto">
-                  <span
-                    className="font-display italic text-[hsl(var(--primary))] leading-none"
-                    style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}
-                  >
-                    {s.time}
-                  </span>
-                  <span className="meta-label">0{i + 1}</span>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[hsl(var(--border))]">
+          {schedule.map((s, i) => (
+            <motion.div
+              key={`${s.title}-${s.time}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.1 }}
+              className="group bg-background p-6 md:p-7 flex flex-col min-h-[380px] hover:bg-[hsl(var(--secondary))]/40 transition-colors duration-500"
+            >
+              <div className="flex items-start justify-between mb-auto">
+                <span
+                  className="font-display italic text-[hsl(var(--primary))] leading-none"
+                  style={{ fontSize: "clamp(2.5rem, 3.5vw, 3.5rem)" }}
+                >
+                  {s.time}
+                </span>
+                <span className="meta-label">0{i + 1}</span>
+              </div>
 
-                <div className="mt-10">
-                  <h3 className="font-display italic text-3xl md:text-4xl mb-3 leading-tight">
-                    {s.title}
-                  </h3>
-                  <p className="text-[hsl(var(--muted-foreground))] leading-relaxed mb-6">
-                    {s.description}
-                  </p>
+              <div className="mt-8">
+                <h3 className="font-display italic text-2xl md:text-3xl mb-3 leading-tight">
+                  {s.title}
+                </h3>
+                <p className="text-sm text-[hsl(var(--muted-foreground))] leading-relaxed mb-6">
+                  {s.description}
+                </p>
 
-                  <div className="border-t border-[hsl(var(--border))] pt-4 space-y-2">
-                    <div className="meta-label text-[hsl(var(--foreground))]">
-                      {s.place}
-                    </div>
-                    <div className="text-xs text-[hsl(var(--muted-foreground))]">
-                      {s.address}
-                    </div>
+                <div className="border-t border-[hsl(var(--border))] pt-4 space-y-2">
+                  <div className="meta-label text-[hsl(var(--foreground))]">
+                    {s.place}
                   </div>
+                  <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                    {s.address}
+                  </div>
+                  {s.mapsUrl ? (
+                    <a
+                      href={s.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block text-xs text-[hsl(var(--primary))] underline underline-offset-2 mt-2 hover:opacity-80"
+                    >
+                      Ver no Google Maps
+                    </a>
+                  ) : null}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -127,8 +148,8 @@ export default function CerimoniaPage() {
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="aspect-[4/3] relative overflow-hidden border border-[hsl(var(--border))]">
             <iframe
-              title="Localização"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6933%2C-23.5805%2C-46.6733%2C-23.5605&layer=mapnik"
+              title="Localização — Paróquia Imaculada Conceição"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-46.658%2C-23.576%2C-46.638%2C-23.556&layer=mapnik&marker=-23.56642%2C-46.648094"
               className="w-full h-full grayscale contrast-[1.1] opacity-80"
               loading="lazy"
             />
@@ -137,31 +158,70 @@ export default function CerimoniaPage() {
 
           <div>
             <MetaLabel className="mb-6">Como chegar</MetaLabel>
-            <h2 className="font-display italic text-4xl md:text-6xl mb-6 leading-[0.95]">
-              Espaço Luz
+            <h2 className="font-display italic text-4xl md:text-5xl mb-6 leading-[0.95]">
+              Paróquia Imaculada Conceição
             </h2>
             <p className="text-[hsl(var(--muted-foreground))] leading-[1.7] mb-8 max-w-md">
-              Um refúgio arquitetônico em meio ao Alto de Pinheiros, com capela
-              histórica, jardins íntimos e salão para 200 convidados.
-              Estacionamento com valet disponível.
+              A cerimônia religiosa será na Bela Vista. Coquetel, jantar e festa
+              acontecem no Pátio Welucci, no Brooklin — veja os horários no
+              cronograma acima.
             </p>
 
             <div className="space-y-4 mb-10 max-w-md">
-              <InfoRow label="Endereço" value="Rua das Oliveiras, 120" />
-              <InfoRow label="Bairro" value="Alto de Pinheiros, São Paulo" />
-              <InfoRow label="Estacionamento" value="Valet incluso" />
+              <InfoRow
+                label="Endereço"
+                value="Av. Brigadeiro Luís Antônio, 2071"
+              />
+              <InfoRow label="Bairro" value="Bela Vista, São Paulo · SP" />
+              <InfoRow label="Site" value="imaculadasp.com.br" />
             </div>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="group gap-4 rounded-none border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] h-auto px-6 py-4"
+            <a
+              href={PAROQUIA_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="meta-label inline-block text-[hsl(var(--primary))] underline underline-offset-4 hover:opacity-80"
             >
-              <Plus className="w-4 h-4" />
-              <span className="meta-label group-hover:text-[hsl(var(--primary-foreground))]">
-                Adicionar ao calendário
-              </span>
-            </Button>
+              Abrir no Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center mt-16 md:mt-24">
+          <div className="aspect-[4/3] relative overflow-hidden border border-[hsl(var(--border))] md:order-2">
+            <iframe
+              title="Localização — Pátio Welucci"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-46.6885%2C-23.614%2C-46.6685%2C-23.601&layer=mapnik&marker=-23.6074888%2C-46.6785377"
+              className="w-full h-full grayscale contrast-[1.1] opacity-80"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          </div>
+
+          <div className="md:order-1">
+            <MetaLabel className="mb-6">Recepção e festa</MetaLabel>
+            <h2 className="font-display italic text-4xl md:text-5xl mb-6 leading-[0.95]">
+              Pátio Welucci
+            </h2>
+            <p className="text-[hsl(var(--muted-foreground))] leading-[1.7] mb-8 max-w-md">
+              Espaço para eventos no Brooklin: coquetel, recepção e pista no
+              mesmo endereço.
+            </p>
+
+            <div className="space-y-4 mb-10 max-w-md">
+              <InfoRow label="Endereço" value="R. Texas, 243" />
+              <InfoRow label="Bairro" value="Brooklin, São Paulo · SP" />
+              <InfoRow label="Site" value="wed.welucci.com" />
+            </div>
+
+            <a
+              href={PATIO_WELLUCCI_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="meta-label inline-block text-[hsl(var(--primary))] underline underline-offset-4 hover:opacity-80"
+            >
+              Abrir no Google Maps
+            </a>
           </div>
         </div>
       </section>
@@ -173,10 +233,12 @@ function InfoBlock({
   icon: Icon,
   label,
   value,
+  valueClassName,
 }: {
   icon: LucideIcon;
   label: string;
   value: string;
+  valueClassName?: string;
 }) {
   return (
     <div className="border-t border-[hsl(var(--border))] pt-5">
@@ -184,7 +246,14 @@ function InfoBlock({
         <Icon className="w-4 h-4 text-[hsl(var(--accent))]" />
         <span className="meta-label">{label}</span>
       </div>
-      <div className="font-display italic text-2xl">{value}</div>
+      <div
+        className={cn(
+          "font-display italic text-2xl tracking-tight",
+          valueClassName,
+        )}
+      >
+        {value}
+      </div>
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function MensagensPage() {
 
   return (
     <div className="relative pt-32 pb-20">
-      <section className="px-[5vw] md:px-[8vw] mb-20 md:mb-28">
+      <section className="px-[5vw] md:px-[8vw] mb-10">
         <MetaLabel className="mb-6">06 · Mural</MetaLabel>
         <h1
           className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"

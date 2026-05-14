@@ -19,7 +19,8 @@ const routes: Route[] = [
     { path: "/cerimonia", label: "Cerimônia e Recepção", num: "05" },
     { path: "/mensagens", label: "Mensagens", num: "06" },
     { path: "/dicas", label: "Dicas", num: "07" },
-    { path: "/presentes", label: "Lista de Presentes", num: "08" },
+    { path: "/galeria", label: "Galeria", num: "08" },
+    { path: "/presentes", label: "Lista de Presentes", num: "09" },
 ];
 
 export default function Navigation() {
@@ -98,8 +99,8 @@ export default function Navigation() {
                         transition={{ duration: 0.4 }}
                         className="fixed inset-0 z-50 bg-[hsl(var(--background))] grain-overlay"
                     >
-                        <div className="relative h-full w-full flex flex-col px-[5vw] md:px-[8vw] py-6">
-                            <div className="flex items-center justify-between">
+                        <div className="relative flex h-full min-h-0 max-h-[100dvh] w-full flex-col overflow-x-hidden overflow-y-auto overscroll-contain px-[5vw] md:px-[8vw] py-4">
+                            <div className="flex shrink-0 items-center justify-between">
                                 <Link
                                     href="/home"
                                     onClick={() => setOpen(false)}
@@ -111,7 +112,7 @@ export default function Navigation() {
                                         alt="R&P"
                                         width={56}
                                         height={56}
-                                        className="h-12 w-12 md:h-14 md:w-14 object-contain select-none"
+                                        className="h-10 w-10 md:h-12 md:w-12 object-contain select-none"
                                     />
                                 </Link>
                                 <Button
@@ -119,15 +120,15 @@ export default function Navigation() {
                                     size="sm"
                                     onClick={() => setOpen(false)}
                                     aria-label="Fechar menu"
-                                    className="gap-3 hover:bg-transparent hover:text-[hsl(var(--primary))] px-2"
+                                    className="gap-2 hover:bg-transparent hover:text-[hsl(var(--primary))] px-2"
                                 >
                                     <span className="meta-label">Fechar</span>
                                     <X className="w-4 h-4" />
                                 </Button>
                             </div>
 
-                            <nav className="flex-1 flex flex-col justify-center max-w-5xl">
-                                <ul className="space-y-2 md:space-y-4">
+                            <nav className="flex min-h-0 flex-1 flex-col justify-center max-w-5xl py-2">
+                                <ul className="space-y-0">
                                     {routes.map((r, i) => {
                                         const isActive = pathname === r.path;
                                         return (
@@ -145,11 +146,11 @@ export default function Navigation() {
                                                 <Link
                                                     href={r.path}
                                                     onClick={() => setOpen(false)}
-                                                    className="group flex items-baseline gap-6 md:gap-10 py-3 border-b border-[hsl(var(--border))]"
+                                                    className="group flex items-baseline gap-4 md:gap-8 py-1.5 md:py-2 border-b border-[hsl(var(--border))] leading-none"
                                                 >
-                                                    <span className="meta-label pt-2">{r.num}</span>
+                                                    <span className="meta-label shrink-0 pt-0.5">{r.num}</span>
                                                     <span
-                                                        className={`font-display text-4xl md:text-6xl lg:text-7xl transition-all duration-500 ${isActive
+                                                        className={`font-display text-[clamp(1.5rem,4.2vw,3.25rem)] md:text-[clamp(1.75rem,3.8vw,3.5rem)] transition-all duration-500 ${isActive
                                                                 ? "text-[hsl(var(--primary))] italic"
                                                                 : "text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] group-hover:italic"
                                                             }`}
@@ -163,7 +164,7 @@ export default function Navigation() {
                                 </ul>
                             </nav>
 
-                            <footer className="flex items-end justify-between pb-4">
+                            <footer className="flex shrink-0 items-end justify-between pb-2 pt-1">
                                 <span className="meta-label">
                                     Paloma &amp; Rodrigo · 05 · Set · 2026
                                 </span>
