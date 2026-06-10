@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Calendar, MapPin, Gift } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import MetaLabel from "@/components/wedding/meta-label";
-import { Button } from "@/components/ui/button";
 
 type Event = {
   title: string;
@@ -14,8 +12,6 @@ type Event = {
   time: string;
   location: string;
   detail: string;
-  href: string;
-  ctaLabel: string;
 };
 
 const events: Event[] = [
@@ -27,8 +23,6 @@ const events: Event[] = [
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     detail:
       "Tarde de risada, champagne e presentes íntimos. Pedimos que cada convidada traga uma peça da lista ou uma mensagem manuscrita.",
-    href: "/cha/lingerie",
-    ctaLabel: "Ver lista de lingerie",
   },
   {
     title: "Bar dos Noivos",
@@ -38,8 +32,6 @@ const events: Event[] = [
     location: "Casa dos Noivos · Rua Dr. Olavo Egídio, 554 - Santana, São Paulo - SP, 02037-001",
     detail:
       "Tarde de whisky, charutos e brindes à amizade. Venha contar histórias — e deixar uma ou duas aos noivos.",
-    href: "/cha/bar",
-    ctaLabel: "Ver lista do bar",
   },
 ];
 
@@ -94,19 +86,6 @@ export default function ChaPage() {
                 <DetailRow icon={MapPin} label="Onde" value={e.location} />
               </div>
 
-              <Button
-                asChild
-                variant="link"
-                className="group mt-5 h-auto p-0 self-start gap-3 text-[hsl(var(--primary))] no-underline hover:no-underline"
-              >
-                <Link href={e.href}>
-                  <Gift className="w-4 h-4" />
-                  <span className="meta-label text-[hsl(var(--primary))]">
-                    {e.ctaLabel}
-                  </span>
-                  <span className="h-px w-8 bg-[hsl(var(--primary))] group-hover:w-16 transition-all" />
-                </Link>
-              </Button>
             </motion.article>
           ))}
         </div>

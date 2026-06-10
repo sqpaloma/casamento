@@ -58,7 +58,7 @@ export default function PaymentPage({
     if (purchase?.status === "pago") {
       cart.clear();
     }
-  }, [purchase?.status, cart]);
+  }, [purchase?.status, cart.clear]);
 
   if (purchase === undefined) {
     return (
