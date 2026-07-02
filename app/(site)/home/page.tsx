@@ -16,12 +16,12 @@ export default function HomePage() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="relative z-10 mt-16"
         >
-          <MetaLabel className="mb-4">Ela</MetaLabel>
+          <MetaLabel className="mb-4">Ele</MetaLabel>
           <h1
             className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
             style={{ fontSize: "clamp(4rem, 13vw, 11rem)", letterSpacing: "-0.05em" }}
           >
-            Paloma
+            Rodrigo
           </h1>
         </motion.div>
 
@@ -52,12 +52,12 @@ export default function HomePage() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
           className="relative z-10 self-end text-right"
         >
-          <MetaLabel className="mb-4 justify-end">Ele</MetaLabel>
+          <MetaLabel className="mb-4 justify-end">Ela</MetaLabel>
           <h1
             className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
             style={{ fontSize: "clamp(4rem, 13vw, 11rem)", letterSpacing: "-0.05em" }}
           >
-            Rodrigo
+            Paloma
           </h1>
         </motion.div>
       </section>
