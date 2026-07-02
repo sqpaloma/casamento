@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
 type Card = {
-    num: string;
     label: string;
     path: string;
     description: string;
@@ -14,49 +13,41 @@ type Card = {
 
 const cards: Card[] = [
     {
-        num: "02",
         label: "Nossa História",
         path: "/historia",
         description: "Do acaso ao altar — cada capítulo que nos trouxe até aqui.",
     },
     {
-        num: "03",
         label: "Padrinhos",
         path: "/padrinhos",
         description: "Os que caminham ao nosso lado e assinam conosco este voto.",
     },
     {
-        num: "04",
         label: "Chá de Lingerie & Bar",
         path: "/cha",
         description: "Uma tarde entre amigas e uma noite entre amigos.",
     },
     {
-        num: "05",
         label: "Cerimônia & Recepção",
         path: "/cerimonia",
         description: "Detalhes da celebração que selará o nosso para sempre.",
     },
     {
-        num: "06",
         label: "Mensagens",
         path: "/mensagens",
         description: "Deixe uma palavra que guardaremos para a eternidade.",
     },
     {
-        num: "07",
         label: "Dicas",
         path: "/dicas",
         description: "Hospedagem, trajes e tudo o que você precisa saber.",
     },
     {
-        num: "08",
         label: "Galeria",
         path: "/galeria",
         description: "Registros do nosso caminho até o grande dia.",
     },
     {
-        num: "09",
         label: "Lista de Presentes",
         path: "/presentes",
         description: "Uma forma carinhosa de fazer parte da nossa nova jornada.",
@@ -98,7 +89,7 @@ export default function PagesCarousel() {
     return (
         <div className="relative">
             <div className="flex items-center justify-between mb-8">
-                <span className="meta-label">Capítulos</span>
+                <span className="meta-label">Nosso Livro</span>
                 <div className="flex items-center gap-2">
                     <button
                         type="button"
@@ -147,7 +138,7 @@ export default function PagesCarousel() {
 
                             <div className="relative z-10 h-full flex flex-col justify-between">
                                 <div className="flex items-start justify-between">
-                                    <span className="meta-label">{card.num}</span>
+                                    <span className="meta-label">{String(i + 1).padStart(2, "0")}</span>
                                     <span className="h-px w-10 bg-[hsl(var(--accent))] mt-3 transition-all duration-500 group-hover:w-16 group-hover:bg-[hsl(var(--primary))]" />
                                 </div>
 
