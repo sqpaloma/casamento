@@ -14,7 +14,7 @@ export default function HomePage() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative z-10 mt-16"
+          className="relative z-10 mt-2"
         >
           <MetaLabel className="mb-4">Ele</MetaLabel>
           <h1
@@ -39,7 +39,7 @@ export default function HomePage() {
           </span>
           <div className="flex items-center gap-4 mt-4 justify-center">
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
+            <span className="font-mono text-xs tracking-[1em] text-[hsl(var(--muted-foreground))]">
               05 · 09 · 2026
             </span>
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
