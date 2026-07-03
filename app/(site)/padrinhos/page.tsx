@@ -9,7 +9,7 @@ type Solo = { name: string };
 
 const couples: Couple[] = [
   { first: "Tainah", second: "Thiago" },
-  { first: "Mayara", second: "Wlademir" },
+  { first: "Mayara", second: "Wladimir" },
   { first: "Arine", second: "Pedro" },
   { first: "Maiana", second: "Ricardo" },
   { first: "Barbara", second: "Ricardo" },

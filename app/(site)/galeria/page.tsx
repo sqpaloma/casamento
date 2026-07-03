@@ -41,7 +41,7 @@ const jantarPadrinhos: GallerySlide[] = [
   },
   {
     src: "/Mayara%20e%20Wlademir.JPG",
-    alt: "Jantar com os padrinhos — Mayara e Wlademir",
+    alt: "Jantar com os padrinhos — Mayara e Wladimir",
   },
 ];
 
