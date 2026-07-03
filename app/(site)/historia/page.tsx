@@ -3,6 +3,7 @@
 import { Fragment } from "react";
 import { motion } from "framer-motion";
 import MetaLabel from "@/components/wedding/meta-label";
+import StoryPageArrows from "@/components/wedding/story-page-arrows";
 
 type Chapter = { year: string; title: string; text: string };
 
@@ -103,6 +104,11 @@ export default function NossaHistoriaPage() {
           </div>
         </div>
       </section>
+
+      <StoryPageArrows
+        prev={{ href: "/home", label: "Home" }}
+        next={{ href: "/padrinhos", label: "Padrinhos" }}
+      />
     </div>
   );
 }

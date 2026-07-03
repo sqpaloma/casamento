@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import MetaLabel from "@/components/wedding/meta-label";
+import StoryPageArrows from "@/components/wedding/story-page-arrows";
 
 type Couple = { first: string; second: string };
 type Solo = { name: string };
@@ -149,6 +150,11 @@ export default function PadrinhosPage() {
           ))}
         </div>
       </section>
+
+      <StoryPageArrows
+        prev={{ href: "/historia", label: "Nossa História" }}
+        next={{ href: "/cha", label: "Chá & Bar" }}
+      />
     </div>
   );
 }

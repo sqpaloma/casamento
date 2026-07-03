@@ -39,7 +39,7 @@ export default function HomePage() {
           </span>
           <div className="flex items-center gap-4 mt-4 justify-center">
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
-            <span className="font-mono text-sm md:text-base tracking-[1em] text-[hsl(var(--muted-foreground))]">
+            <span className="font-mono text-xl tracking-[1em] text-[hsl(var(--muted-foreground))]">
               05 · 09 · 2026
             </span>
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
@@ -98,13 +98,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative px-[5vw] md:px-[8vw] py-10 border-t border-[hsl(var(--border))]">
-        <div className="flex flex-wrap gap-6 md:gap-12 items-center justify-between">
-          <span className="meta-label">23.5505° S · 46.6333° W</span>
-          <span className="meta-label">Duração estimada: 10h</span>
-          <span className="meta-label">Dress code: Traje de Gala</span>
+      <footer className="relative px-[5vw] md:px-[8vw] py-12 border-t border-border">
+        <div className="grid gap-8 md:grid-cols-[auto_1fr_auto] md:items-end text-foreground">
+          <div>
+            <span className="font-display italic text-xl md:text-2xl text-primary">
+              Cerimônia
+            </span>
+            <p className="mt-1 text-sm md:text-base tracking-[0.04em]">às 17h30</p>
+          </div>
+          <div>
+            <span className="font-display italic text-xl md:text-2xl text-primary">
+              Local
+            </span>
+            <p className="mt-1 text-sm md:text-base tracking-[0.04em]">
+              Paróquia Imaculada Conceição · festa no Pátio Welucci
+            </p>
+          </div>
+          <div className="md:text-right">
+            <span className="font-display italic text-xl md:text-2xl text-primary">
+              Dress code
+            </span>
+            <p className="mt-1 text-sm md:text-base tracking-[0.04em]">
+              Traje de Gala
+            </p>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
