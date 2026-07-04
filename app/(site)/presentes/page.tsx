@@ -85,7 +85,7 @@ export default function ListaPresentesPage() {
               <span className="flex-1 h-px bg-[hsl(var(--border))]" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[hsl(var(--border))]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px]">
               {lista
                 .filter((p) => p.categoria === cat)
                 .map((item, i) => {
@@ -115,7 +115,7 @@ export default function ListaPresentesPage() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: i * 0.08 }}
                       onClick={canAdd ? handleCardClick : undefined}
-                      className={`group relative overflow-hidden bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${isPago || isReservado
+                      className={`group relative overflow-hidden p-8 flex flex-col gap-4 transition-colors ${isPago || isReservado
                           ? "opacity-60"
                           : "hover:bg-[hsl(var(--secondary))] cursor-pointer"
                         }`}
