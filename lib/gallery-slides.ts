@@ -1,0 +1,45 @@
+import type { GallerySlide } from "@/components/wedding/gallery-carousel";
+
+const preWeddingFiles = [
+  "P&R-1000.jpg",
+  "P&R-1004.jpg",
+  "P&R-1007.jpg",
+  "P&R-1009.jpg",
+  "P&R-1013.jpg",
+  "P&R-1016.jpg",
+  "P&R-1017.jpg",
+  "P&R-1018.jpg",
+  "P&R-1024.jpg",
+  "P&R-1048.jpg",
+  "P&R-1072.jpg",
+  "P&R-1080.jpg",
+  "P&R-1085.jpg",
+  "P&R-1086.jpg",
+  "P&R-1089.jpg",
+  "P&R-1091.jpg",
+  "P&R-1102.jpg",
+  "P&R-1117.jpg",
+  "P&R-1136.jpg",
+  "P&R-1147.jpg",
+  "P&R-1153.jpg",
+  "P&R-1185.jpg",
+  "P&R-1201.jpg",
+  "P&R-1203.jpg",
+  "P&R-1207.jpg",
+  "P&R-1214.jpg",
+  "P&R-1238.jpg",
+  "P&R-1242.jpg",
+  "P&R-1253.jpg",
+  "P&R-1263.jpg",
+  "P&R-1264.jpg",
+  "P&R-1269.jpg",
+  "P&R-1272.jpg",
+  "P&R-1292.jpg",
+];
+
+export const preWeddingSlides: GallerySlide[] = preWeddingFiles.map(
+  (file, index) => ({
+    src: `/prewedding/${encodeURIComponent(file)}`,
+    alt: `Pré-wedding — foto ${index + 1}`,
+  }),
+);

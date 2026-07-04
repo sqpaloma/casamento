@@ -6,43 +6,69 @@ import {
   GalleryCarouselSection,
   type GallerySlide,
 } from "@/components/wedding/gallery-carousel";
-
-const preWedding: GallerySlide[] = [
-  {
-    src: "/3702b9a4-0983-40cf-a758-a2baa48193ff.JPG",
-    alt: "Pré-wedding — momento do casal",
-  },
-  {
-    src: "/fef6d5d0-bcaa-420e-b758-17471879db75.JPG",
-    alt: "Pré-wedding — celebração com amigos",
-  },
-  {
-    src: "/b043e187-9217-4c30-abdd-b94824454cd6.JPG",
-    alt: "Pré-wedding — registro do dia",
-  },
-  {
-    src: "/igreja.png",
-    alt: "Pré-wedding — ilustração da igreja",
-  },
-];
+import { preWeddingSlides as preWedding } from "@/lib/gallery-slides";
 
 const jantarPadrinhos: GallerySlide[] = [
-  {
-    src: "/Arine%20e%20Pedro.JPG",
-    alt: "Jantar com os padrinhos — Arine e Pedro",
-  },
-  {
-    src: "/Grazi%20e%20Guilherme.JPG",
-    alt: "Jantar com os padrinhos — Grazi e Guilherme",
-  },
-  {
-    src: "/Maiana%20e%20Ricardo.JPG",
-    alt: "Jantar com os padrinhos — Maiana e Ricardo",
-  },
-  {
-    src: "/Mayara%20e%20Wlademir.JPG",
-    alt: "Jantar com os padrinhos — Mayara e Wladimir",
-  },
+  { src: "/padrinhos/Arine%20e%20Pedro.JPG", alt: "Jantar com os padrinhos — Arine e Pedro" },
+  { src: "/padrinhos/Grazi%20e%20Guilherme.JPG", alt: "Jantar com os padrinhos — Grazi e Guilherme" },
+  { src: "/padrinhos/Maiana%20e%20Ricardo.JPG", alt: "Jantar com os padrinhos — Maiana e Ricardo" },
+  { src: "/padrinhos/Mayara%20e%20Wlademir.JPG", alt: "Jantar com os padrinhos — Mayara e Wladimir" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.14.25.jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.34.jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.34%20(1).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.35.jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.35%20(1).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.35%20(2).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.35%20(3).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.36.jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.36%20(1).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.36%20(2).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.36%20(3).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.37.jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.37%20(1).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.37%20(2).jpeg", alt: "Jantar com os padrinhos" },
+  { src: "/padrinhos/WhatsApp%20Image%202026-07-03%20at%2021.22.38.jpeg", alt: "Jantar com os padrinhos" },
+];
+
+const chaLingerie: GallerySlide[] = [
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.21.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.21%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.22.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.22%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.22%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.23.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.23%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.23%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.24.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.24%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.24%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.24%20(3).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.25.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.25%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.25%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.25%20(3).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.26.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.26%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.26%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.26%20(3).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.27.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.27%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.27%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.27%20(3).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.28.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.28%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.28%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.29.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.29%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.29%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.30.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.30%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.30%20(2).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.30%20(3).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.31.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.31.31%20(1).jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.40.45.jpeg", alt: "Chá lingerie e bar" },
+  { src: "/cha/WhatsApp%20Image%202026-07-03%20at%2021.42.49.jpeg", alt: "Chá lingerie e bar" },
 ];
 
 const sections: {
@@ -52,7 +78,7 @@ const sections: {
 }[] = [
   { title: "Pré-wedding", slides: preWedding },
   { title: "Jantar com os padrinhos", slides: jantarPadrinhos },
-  { title: "Chá lingerie e bar (em breve)", comingSoon: true, slides: [] },
+  { title: "Chá lingerie e bar", slides: chaLingerie },
   { title: "Despedida de solteiro (em breve)", comingSoon: true, slides: [] },
   { title: "Casamento em breve", comingSoon: true, slides: [] },
 ];

@@ -84,6 +84,24 @@ export function GalleryCarouselSection({
     el.scrollBy({ left: step * dir, behavior: "smooth" });
   };
 
+  const pausedRef = useRef(false);
+
+  useEffect(() => {
+    if (comingSoon || slides.length <= 4) return;
+    const interval = setInterval(() => {
+      if (pausedRef.current) return;
+      const el = scrollerRef.current;
+      if (!el) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollBy(1);
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [comingSoon, slides.length]);
+
   const openLightbox = (i: number) => setLightboxIndex(i);
   const closeLightbox = () => setLightboxIndex(null);
 
@@ -233,32 +251,33 @@ export function GalleryCarouselSection({
       ) : (
         <div
           ref={scrollerRef}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide -mx-[5vw] px-[5vw] md:-mx-[8vw] md:px-[8vw]"
+          onMouseEnter={() => { pausedRef.current = true; }}
+          onMouseLeave={() => { pausedRef.current = false; }}
+          onTouchStart={() => { pausedRef.current = true; }}
+          onTouchEnd={() => { setTimeout(() => { pausedRef.current = false; }, 3000); }}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide"
         >
           {slides.map((slide, slideIndex) => (
             <div
               key={slide.src}
               data-gallery-slide
-              className="snap-start shrink-0 w-[10.25rem] sm:w-[11.25rem] md:w-[12.25rem]"
+              className="snap-start shrink-0 w-[calc((100%-1rem)/2)] md:w-[calc((100%-3rem)/4)]"
             >
               <button
                 type="button"
                 onClick={() => openLightbox(slideIndex)}
-                className="group block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))]"
+                className="group block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))] rounded-2xl"
               >
                 <span className="sr-only">Ampliar: {slide.alt}</span>
-                <div className="relative aspect-[3/4] w-full overflow-hidden border border-[hsl(var(--border))] bg-[hsl(var(--secondary))]/40 transition-colors group-hover:border-[hsl(var(--primary))]/50">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border-2 border-[hsl(var(--primary))]/60 bg-[hsl(var(--secondary))]/40 transition-all group-hover:border-[hsl(var(--primary))] group-hover:shadow-lg group-hover:shadow-[hsl(var(--primary))]/10">
                   <Image
                     src={slide.src}
                     alt={slide.alt}
                     fill
-                    sizes="(max-width: 640px) 168px, 204px"
-                    className="object-contain object-top p-1 grayscale contrast-[1.02] transition-all duration-500 group-hover:grayscale-0 group-hover:contrast-100"
+                    sizes="(max-width: 768px) 45vw, 21vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <span className="mt-2 block text-center text-[10px] font-mono uppercase tracking-widest text-[hsl(var(--muted-foreground))] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-                  Ver em tamanho grande
-                </span>
               </button>
             </div>
           ))}

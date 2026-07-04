@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import Countdown from "@/components/wedding/countdown";
+import HomePhotoCarousel from "@/components/wedding/home-photo-carousel";
 import MetaLabel from "@/components/wedding/meta-label";
 import PagesCarousel from "@/components/wedding/pages-carousel";
+import { preWeddingSlides } from "@/lib/gallery-slides";
 
 export default function HomePage() {
   return (
@@ -72,6 +74,10 @@ export default function HomePage() {
           </div>
           <Countdown />
         </div>
+      </section>
+
+      <section className="relative px-[5vw] md:px-[8vw] py-16 md:py-24 border-b border-[hsl(var(--border))]">
+        <HomePhotoCarousel slides={preWeddingSlides} />
       </section>
 
       <section className="relative px-[5vw] md:px-[8vw] py-28 md:py-40">
