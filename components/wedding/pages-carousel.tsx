@@ -83,6 +83,7 @@ export default function PagesCarousel() {
         captured: false,
     });
     const suppressClickRef = useRef(false);
+    const resetOnNextUpdate = useRef(true);
     const [offset, setOffset] = useState(0);
     const [maxOffset, setMaxOffset] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
@@ -92,12 +93,18 @@ export default function PagesCarousel() {
         const track = trackRef.current;
         if (!viewport || !track) return;
 
+        const shouldReset = resetOnNextUpdate.current;
+        resetOnNextUpdate.current = false;
+
         const nextMaxOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
         setMaxOffset(nextMaxOffset);
-        setOffset((currentOffset) => Math.min(currentOffset, nextMaxOffset));
+        setOffset((currentOffset) =>
+            shouldReset ? 0 : Math.min(currentOffset, nextMaxOffset),
+        );
     }, []);
 
     useEffect(() => {
+        resetOnNextUpdate.current = true;
         updateMetrics();
         window.addEventListener("resize", updateMetrics);
         return () => {
