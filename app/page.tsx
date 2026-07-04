@@ -134,11 +134,11 @@ export default function ThresholdPage() {
             O Casamento
             <br />
             <span className="not-italic text-[hsl(var(--primary))]">de</span>{" "}
-            Paloma
+            Rodrigo
             <span className="not-italic text-[hsl(var(--primary))] mx-4">
               &amp;
             </span>
-            Rodrigo
+            Paloma
           </motion.h1>
 
           <motion.div

@@ -41,7 +41,7 @@ const tips: Tip[] = [
     icon: Camera,
     title: "Fotos",
     subtitle: "Momento presença",
-    text: "Pedimos celulares guardados durante a cerimônia. Depois, compartilhe suas imagens com #PalomaERodrigo2025.",
+    text: "Pedimos celulares guardados durante a cerimônia. Depois, compartilhe suas imagens com #rodrigoepaloma025.",
   },
   {
     icon: Heart,
