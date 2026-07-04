@@ -42,7 +42,7 @@ export default function Navigation() {
             <header className="fixed top-0 left-0 right-0 z-40 px-[5vw] md:px-[8vw] py-6 flex items-center justify-between pointer-events-none">
                 <Link
                     href="/home"
-                    aria-label="Paloma & Rodrigo"
+                    aria-label="Rodrigo & Paloma"
                     className="pointer-events-auto inline-flex items-center"
                 >
                     <Image
@@ -104,7 +104,7 @@ export default function Navigation() {
                                 <Link
                                     href="/home"
                                     onClick={() => setOpen(false)}
-                                    aria-label="Paloma & Rodrigo"
+                                    aria-label="Rodrigo & Paloma"
                                     className="inline-flex items-center"
                                 >
                                     <Image
@@ -151,8 +151,8 @@ export default function Navigation() {
                                                     <span className="meta-label shrink-0 pt-0.5">{r.num}</span>
                                                     <span
                                                         className={`font-display text-[clamp(1.5rem,4.2vw,3.25rem)] md:text-[clamp(1.75rem,3.8vw,3.5rem)] transition-all duration-500 ${isActive
-                                                                ? "text-[hsl(var(--primary))] italic"
-                                                                : "text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] group-hover:italic"
+                                                            ? "text-[hsl(var(--primary))] italic"
+                                                            : "text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] group-hover:italic"
                                                             }`}
                                                     >
                                                         {r.label}
@@ -166,7 +166,7 @@ export default function Navigation() {
 
                             <footer className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-end sm:justify-between pb-2 pt-1">
                                 <span className="meta-label">
-                                    Paloma &amp; Rodrigo · 05 · Set · 2026
+                                    Rodrigo &amp; Paloma · 05 · Set · 2026
                                 </span>
                                 <span className="meta-label">São Paulo · Brasil</span>
                             </footer>

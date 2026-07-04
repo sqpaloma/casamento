@@ -316,7 +316,7 @@ export const createCheckout = action({
         phone: args.buyer.phone,
       });
 
-      const description = `Presente de casamento Paloma & Rodrigo - ${reservation.items
+      const description = `Presente de casamento Rodrigo & Paloma - ${reservation.items
         .map((i) => i.titulo)
         .join(", ")}`.slice(0, 480);
 

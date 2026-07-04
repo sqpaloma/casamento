@@ -19,7 +19,7 @@ export default function AdminLayout({
             R&amp;P
           </Link>
           <span className="meta-label hidden md:inline">
-            Admin · Paloma &amp; Rodrigo
+            Admin · Rodrigo &amp; Paloma
           </span>
         </div>
 
