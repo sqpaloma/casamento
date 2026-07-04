@@ -8,6 +8,7 @@ type SeedGift = {
   loja: string;
   url: string;
   preco?: number;
+  imagem?: string;
 };
 
 const SEED_GIFTS: SeedGift[] = [
@@ -100,6 +101,8 @@ const CAT_COTAS = '"Cotas" divertidas';
 const CAT_PERSONALIZADOS = "Presentes personalizados";
 const CAT_CASA_NOVA = "Metas da casa nova";
 const CAT_EMOCIONAIS = "Ideias emocionais / interativas";
+const CAT_LAR = "Presentes para o lar";
+const CAT_SONHOS = "Grandes sonhos do casal";
 
 const PRODUCTION_GIFTS: SeedGift[] = [
   {
@@ -369,6 +372,260 @@ const PRODUCTION_GIFTS: SeedGift[] = [
     loja: "Interativo",
     url: "#",
   },
+
+  // --- Presentes para o lar ---
+  {
+    categoria: CAT_LAR,
+    titulo: "Cantinho do café dos sonhos",
+    descricao:
+      "Tudo para montar o cantinho perfeito do café na nossa casa nova.",
+    loja: "PIX",
+    url: "#",
+    preco: 350,
+    imagem: "/gifts/production/cantinho-do-cafe-dos-sonhos.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Kit para receber amigos",
+    descricao:
+      "Taças, petisqueiras e tudo para receber bem quem a gente ama.",
+    loja: "PIX",
+    url: "#",
+    preco: 390,
+    imagem: "/gifts/production/kit-para-receber-amigos.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Jogo de panelas premium",
+    descricao:
+      "Um conjunto completo de panelas de qualidade para o dia a dia.",
+    loja: "PIX",
+    url: "#",
+    preco: 450,
+    imagem: "/gifts/production/jogo-de-panelas-premium.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Jogo de taças de cristal",
+    descricao:
+      "Para brindar os melhores momentos com elegância.",
+    loja: "PIX",
+    url: "#",
+    preco: 490,
+    imagem: "/gifts/production/jogo-de-tacas-de-cristal.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Jogo de cama premium",
+    descricao:
+      "Lençóis e fronhas de alta qualidade para noites perfeitas.",
+    loja: "PIX",
+    url: "#",
+    preco: 550,
+    imagem: "/gifts/production/jogo-de-cama-premium.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Enxoval de banho completo",
+    descricao:
+      "Toalhas macias e roupões para o conforto do nosso lar.",
+    loja: "PIX",
+    url: "#",
+    preco: 590,
+    imagem: "/gifts/production/enxoval-de-banho-completo.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Faqueiro em aço inox",
+    descricao:
+      "Talheres elegantes para completar a nossa mesa.",
+    loja: "PIX",
+    url: "#",
+    preco: 650,
+    imagem: "/gifts/production/faqueiro-em-aco-inox.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Cafeteira Nespresso",
+    descricao:
+      "Cafés deliciosos em cápsulas para os nossos dias juntos.",
+    loja: "PIX",
+    url: "#",
+    preco: 690,
+    imagem: "/gifts/production/cafeteira-nespresso.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Aspirador vertical",
+    descricao:
+      "Limpeza prática e rápida para o dia a dia do casal.",
+    loja: "PIX",
+    url: "#",
+    preco: 790,
+    imagem: "/gifts/production/aspirador-vertical.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Air Fryer Oven",
+    descricao:
+      "Refeições saudáveis e saborosas com praticidade.",
+    loja: "PIX",
+    url: "#",
+    preco: 850,
+    imagem: "/gifts/production/air-fryer-oven.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Ventilador de torre",
+    descricao:
+      "Refrescar a casa com estilo e eficiência nos dias quentes.",
+    loja: "PIX",
+    url: "#",
+    preco: 890,
+    imagem: "/gifts/production/ventilador-de-torre.png",
+  },
+  {
+    categoria: CAT_LAR,
+    titulo: "Purificador de água",
+    descricao:
+      "Água pura e geladinha direto na cozinha, sempre à mão.",
+    loja: "PIX",
+    url: "#",
+    preco: 950,
+    imagem: "/gifts/production/purificador-de-agua.png",
+  },
+
+  // --- Grandes sonhos do casal ---
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Poltrona para leitura",
+    descricao:
+      "Um cantinho aconchegante para relaxar e ler juntos.",
+    loja: "PIX",
+    url: "#",
+    preco: 990,
+    imagem: "/gifts/production/poltrona-para-leitura.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Smart TV para o quarto",
+    descricao:
+      "Filmes, séries e maratonas aconchegantes no nosso quarto.",
+    loja: "PIX",
+    url: "#",
+    preco: 1190,
+    imagem: "/gifts/production/smart-tv-para-o-quarto.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Equipamentos para nossos momentos de lazer",
+    descricao:
+      "Raquetes, bolas e equipamentos para curtir juntos ao ar livre.",
+    loja: "PIX",
+    url: "#",
+    preco: 1200,
+    imagem: "/gifts/production/equipamentos-para-nossos-momentos-de-lazer.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Colchão premium",
+    descricao:
+      "O conforto de um colchão incrível para as nossas melhores noites.",
+    loja: "PIX",
+    url: "#",
+    preco: 1290,
+    imagem: "/gifts/production/colchao-premium.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Mesa de jantar (contribuição)",
+    descricao:
+      "Contribua para a mesa onde vamos reunir família e amigos.",
+    loja: "PIX",
+    url: "#",
+    preco: 1390,
+    imagem: "/gifts/production/mesa-de-jantar.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Malas para nossas viagens",
+    descricao:
+      "Um conjunto de malas para todas as viagens que vamos fazer juntos.",
+    loja: "PIX",
+    url: "#",
+    preco: 1490,
+    imagem: "/gifts/production/malas-para-nossas-viagens.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Aspirador robô",
+    descricao:
+      "A casa sempre limpinha enquanto curtimos a vida a dois.",
+    loja: "PIX",
+    url: "#",
+    preco: 1590,
+    imagem: "/gifts/production/aspirador-robo.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Equipamentos para nosso escritório",
+    descricao:
+      "Monitor, cadeira e acessórios para o home office dos sonhos.",
+    loja: "PIX",
+    url: "#",
+    preco: 1690,
+    imagem: "/gifts/production/equipamentos-para-nosso-escritorio.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Adega climatizada",
+    descricao:
+      "Para guardar vinhos especiais e brindar cada conquista.",
+    loja: "PIX",
+    url: "#",
+    preco: 1790,
+    imagem: "/gifts/production/adega-climatizada.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Sofá dos nossos sonhos (contribuição)",
+    descricao:
+      "Contribua para o sofá onde vamos criar as melhores memórias.",
+    loja: "PIX",
+    url: "#",
+    preco: 1990,
+    imagem: "/gifts/production/sofa-dos-nossos-sonhos.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Nossa lua de mel (contribuição)",
+    descricao:
+      "Ajude a realizar a viagem dos nossos sonhos como recém-casados.",
+    loja: "PIX",
+    url: "#",
+    preco: 2000,
+    imagem: "/gifts/production/nossa-lua-de-mel.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Construindo nosso lar",
+    descricao:
+      "Uma contribuição especial para transformar nossa casa em lar.",
+    loja: "PIX",
+    url: "#",
+    preco: 2200,
+    imagem: "/gifts/production/construindo-nosso-lar.png",
+  },
+  {
+    categoria: CAT_SONHOS,
+    titulo: "Realizando nossos sonhos",
+    descricao:
+      "O presente mais especial: ajudar a realizar os nossos maiores sonhos juntos.",
+    loja: "PIX",
+    url: "#",
+    preco: 2500,
+    imagem: "/gifts/production/realizando-nossos-sonhos.png",
+  },
 ];
 
 export const seedProductionGifts = internalMutation({
@@ -405,6 +662,7 @@ export const seedProductionGifts = internalMutation({
         loja: g.loja,
         url: g.url,
         preco: g.preco,
+        imagem: g.imagem,
         status: "disponivel",
         order,
         createdAt: now,

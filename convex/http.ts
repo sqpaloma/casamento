@@ -14,7 +14,7 @@ type AsaasWebhookBody = {
 };
 
 http.route({
-  path: "/asaas-webhook",
+  path: "/asaas/webhook",
   method: "POST",
   handler: httpAction(async (ctx, request) => {
     const expectedToken = process.env.ASAAS_WEBHOOK_TOKEN;
