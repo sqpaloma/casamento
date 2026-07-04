@@ -2,13 +2,39 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift } from "lucide-react";
 
+const HOME_SCROLL_THRESHOLD = 0.75;
+
 export default function FloatingGiftButton() {
     const pathname = usePathname();
+    const isHome = pathname === "/home";
+    const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
-    const hide = pathname?.startsWith("/presentes") || pathname?.startsWith("/checkout");
+    const hide =
+        pathname?.startsWith("/presentes") ||
+        pathname?.startsWith("/checkout") ||
+        (isHome && !scrolledPastHero);
+
+    useEffect(() => {
+        const checkScroll = () => {
+            setScrolledPastHero(
+                window.scrollY > window.innerHeight * HOME_SCROLL_THRESHOLD
+            );
+        };
+
+        window.addEventListener("scroll", checkScroll, { passive: true });
+        window.addEventListener("resize", checkScroll, { passive: true });
+        const frame = requestAnimationFrame(checkScroll);
+
+        return () => {
+            cancelAnimationFrame(frame);
+            window.removeEventListener("scroll", checkScroll);
+            window.removeEventListener("resize", checkScroll);
+        };
+    }, [pathname]);
 
     return (
         <AnimatePresence>
