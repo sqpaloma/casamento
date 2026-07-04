@@ -41,7 +41,7 @@ export default function HomePage() {
           </span>
           <div className="flex items-center gap-4 mt-4 justify-center">
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
-            <span className="font-mono text-xl tracking-[1em] text-[hsl(var(--muted-foreground))]">
+            <span className="font-mono text-sm md:text-xl tracking-[0.5em] md:tracking-[1em] text-[hsl(var(--muted-foreground))]">
               05 · 09 · 2026
             </span>
             <span className="h-px w-10 bg-[hsl(var(--accent))]" />
