@@ -279,7 +279,7 @@ export default function PagesCarousel() {
 
                                 <div className="relative z-10 h-full flex flex-col justify-between">
                                     <div className="flex items-start justify-between">
-                                        <span className="meta-label">{String(i + 1).padStart(2, "0")}</span>
+                                        <span className="meta-label">{String(i + 2).padStart(2, "0")}</span>
                                         <span className="h-px w-10 bg-[hsl(var(--accent))] mt-3 transition-all duration-500 group-hover:w-16 group-hover:bg-[hsl(var(--primary))]" />
                                     </div>
 
