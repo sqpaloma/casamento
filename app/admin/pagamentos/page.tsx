@@ -185,6 +185,10 @@ export default function AdminPagamentosPage() {
                     </span>
                     <span className="meta-label px-2 py-0.5 border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))]">
                       {methodLabels[p.paymentMethod]}
+                      {p.paymentMethod === "CREDIT_CARD" &&
+                        p.installmentCount &&
+                        p.installmentCount > 1 &&
+                        ` · ${p.installmentCount}x`}
                     </span>
                     <span className="font-mono text-xs text-[hsl(var(--muted-foreground))]">
                       {new Date(p.createdAt).toLocaleString("pt-BR")}

@@ -94,11 +94,10 @@ export default function ListaPresentesPage() {
                   const inCart = cart.has(item._id);
                   const semPreco = typeof item.preco !== "number";
 
-                  const canAddOnHover =
-                    !isPago && !isReservado && !semPreco && !inCart;
+                  const canAdd = !isPago && !isReservado && !semPreco && !inCart;
 
-                  const handleHoverAdd = () => {
-                    if (!canAddOnHover) return;
+                  const handleCardClick = () => {
+                    if (!canAdd) return;
                     cart.add({
                       giftId: item._id,
                       titulo: item.titulo,
@@ -115,7 +114,7 @@ export default function ListaPresentesPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: i * 0.08 }}
-                      onMouseEnter={handleHoverAdd}
+                      onClick={canAdd ? handleCardClick : undefined}
                       className={`group relative overflow-hidden bg-background/80 backdrop-blur-sm p-8 flex flex-col gap-4 transition-colors ${isPago || isReservado
                           ? "opacity-60"
                           : "hover:bg-[hsl(var(--secondary))] cursor-pointer"
@@ -131,7 +130,7 @@ export default function ListaPresentesPage() {
 
                       <div className="relative z-10 flex items-start justify-between">
                         <Gift className="w-4 h-4 text-[hsl(var(--accent))] group-hover:text-[hsl(var(--primary))] transition-colors mt-1" />
-                        <span className="meta-label">{item.loja}</span>
+                        <span className="meta-label text-[hsl(var(--muted-foreground))]">{item.loja}</span>
                       </div>
 
                       <div className="relative z-10 flex-1">
@@ -148,7 +147,10 @@ export default function ListaPresentesPage() {
                         )}
                       </div>
 
-                      <div className="relative z-10 self-stretch pt-4 mt-2 border-t border-[hsl(var(--border))] flex items-center justify-between gap-3">
+                      <div
+                        className="relative z-10 self-stretch pt-4 mt-2 border-t border-[hsl(var(--border))] flex items-center justify-between gap-3"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {isPago ? (
                           <span className="meta-label text-[hsl(var(--accent))] inline-flex items-center gap-2">
                             <CheckCircle2 className="w-3 h-3" />
@@ -235,7 +237,7 @@ export default function ListaPresentesPage() {
               className="group gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-6 py-4"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span className="meta-label text-[hsl(var(--primary-foreground))] group-hover:text-[hsl(var(--primary))]">
+              <span className="meta-label text-inherit group-hover:text-inherit">
                 Ver carrinho e pagar
               </span>
             </Button>
@@ -265,7 +267,7 @@ export default function ListaPresentesPage() {
             ) : (
               <Copy className="w-4 h-4" />
             )}
-            <span className="meta-label text-[hsl(var(--primary-foreground))] group-hover:text-[hsl(var(--primary))]">
+            <span className="meta-label text-inherit group-hover:text-inherit">
               {pixCopied
                 ? "PIX copiado!"
                 : "Clique para copiar o PIX dos noivos (celular)"}

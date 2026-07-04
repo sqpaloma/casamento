@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "convex/react";
 import {
   ArrowLeft,
@@ -23,6 +23,14 @@ function formatBRL(value: number): string {
   return value.toFixed(2).replace(".", ",");
 }
 
+function formatInstallmentLabel(
+  amount: number,
+  installmentCount: number | undefined
+): string | null {
+  if (!installmentCount || installmentCount <= 1) return null;
+  return `em ${installmentCount}x de R$ ${formatBRL(amount / installmentCount)}`;
+}
+
 function useCountdown(expiresAt: number | undefined) {
   const [now, setNow] = useState<number>(() => Date.now());
   useEffect(() => {
@@ -40,17 +48,16 @@ function useCountdown(expiresAt: number | undefined) {
   };
 }
 
-export default function PaymentPage({
-  params,
-}: {
-  params: Promise<{ paymentId: string }>;
-}) {
-  const { paymentId } = use(params);
+export default function PaymentPage() {
+  const params = useParams<{ paymentId: string }>();
+  const paymentId =
+    typeof params.paymentId === "string" ? params.paymentId : undefined;
   const router = useRouter();
   const cart = useCart();
-  const purchase = useQuery(api.checkout.getPublic, {
-    paymentId: paymentId as Id<"payments">,
-  });
+  const purchase = useQuery(
+    api.checkout.getPublic,
+    paymentId ? { paymentId: paymentId as Id<"payments"> } : "skip"
+  );
   const countdown = useCountdown(purchase?.expiresAt);
   const [copied, setCopied] = useState(false);
 
@@ -92,6 +99,10 @@ export default function PaymentPage({
   const isCanceled =
     purchase.status === "cancelado" || purchase.status === "expirado";
   const isPending = purchase.status === "pendente";
+  const installmentLabel = formatInstallmentLabel(
+    purchase.amount,
+    purchase.installmentCount
+  );
 
   const handleCopyPix = async () => {
     if (!purchase.pixPayload) return;
@@ -245,6 +256,12 @@ export default function PaymentPage({
                     Você será redirecionado para a página segura do Asaas para
                     inserir os dados do seu cartão. Após a confirmação, esta
                     tela vai atualizar automaticamente.
+                    {installmentLabel && (
+                      <>
+                        {" "}
+                        Pagamento {installmentLabel} sem juros.
+                      </>
+                    )}
                   </p>
                   <Button
                     asChild
@@ -304,9 +321,16 @@ export default function PaymentPage({
             </ul>
             <div className="border-t border-[hsl(var(--border))] mt-2 pt-5 flex items-baseline justify-between">
               <span className="meta-label">Total</span>
-              <span className="font-mono text-2xl text-[hsl(var(--primary))]">
-                R$ {formatBRL(purchase.amount)}
-              </span>
+              <div className="text-right">
+                <span className="font-mono text-2xl text-[hsl(var(--primary))]">
+                  R$ {formatBRL(purchase.amount)}
+                </span>
+                {installmentLabel && (
+                  <p className="meta-label text-[hsl(var(--muted-foreground))] mt-1">
+                    {installmentLabel} sem juros
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </aside>

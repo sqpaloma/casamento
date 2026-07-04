@@ -143,7 +143,6 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
   }
 
   .hairline {

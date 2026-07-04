@@ -99,10 +99,17 @@ export async function createPayment(args: {
   dueDate: string;
   description?: string;
   externalReference?: string;
+  installmentCount?: number;
 }): Promise<AsaasPayment> {
+  const { installmentCount, value, ...rest } = args;
+  const body =
+    installmentCount !== undefined && installmentCount > 1
+      ? { ...rest, installmentCount, totalValue: value }
+      : { ...rest, value };
+
   return await asaasFetch<AsaasPayment>("/payments", {
     method: "POST",
-    body: JSON.stringify(args),
+    body: JSON.stringify(body),
   });
 }
 

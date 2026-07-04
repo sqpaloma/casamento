@@ -118,7 +118,7 @@ export default function CartDrawer() {
                   onClick={handleCheckout}
                   className="group w-full gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-6 py-5"
                 >
-                  <span className="meta-label text-[hsl(var(--primary-foreground))] group-hover:text-[hsl(var(--primary))]">
+                  <span className="meta-label text-inherit group-hover:text-inherit">
                     Ir para o checkout
                   </span>
                   <ArrowRight className="w-4 h-4" />

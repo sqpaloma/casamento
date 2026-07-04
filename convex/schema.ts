@@ -71,6 +71,7 @@ export default defineSchema({
     pixPayload: v.optional(v.string()),
     pixExpirationDate: v.optional(v.string()),
     invoiceUrl: v.optional(v.string()),
+    installmentCount: v.optional(v.number()),
     expiresAt: v.optional(v.number()),
     paidAt: v.optional(v.number()),
     createdAt: v.number(),

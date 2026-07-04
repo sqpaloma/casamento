@@ -16,6 +16,38 @@ import {
 } from "./lib/asaas";
 
 const RESERVATION_MS = 30 * 60 * 1000;
+const MIN_INSTALLMENT_VALUE = 5;
+const MAX_INSTALLMENTS = 12;
+
+function validateInstallmentCount(
+  paymentMethod: "PIX" | "CREDIT_CARD",
+  installmentCount: number | undefined,
+  total: number
+): number | undefined {
+  if (installmentCount === undefined) {
+    return paymentMethod === "CREDIT_CARD" ? 1 : undefined;
+  }
+
+  if (paymentMethod !== "CREDIT_CARD") {
+    throw new Error("Parcelamento disponível apenas para cartão de crédito.");
+  }
+
+  if (
+    !Number.isInteger(installmentCount) ||
+    installmentCount < 1 ||
+    installmentCount > MAX_INSTALLMENTS
+  ) {
+    throw new Error("Número de parcelas inválido.");
+  }
+
+  if (total / installmentCount < MIN_INSTALLMENT_VALUE) {
+    throw new Error(
+      `Cada parcela deve ser de no mínimo R$ ${MIN_INSTALLMENT_VALUE.toFixed(2).replace(".", ",")}.`
+    );
+  }
+
+  return installmentCount;
+}
 
 const checkoutItemValidator = v.object({
   giftId: v.id("gifts"),
@@ -54,6 +86,7 @@ export const reserveGiftsAndCreatePayment = internalMutation({
     items: v.array(checkoutItemValidator),
     buyer: buyerValidator,
     paymentMethod: v.union(v.literal("PIX"), v.literal("CREDIT_CARD")),
+    installmentCount: v.optional(v.number()),
   },
   returns: v.object({
     paymentId: v.id("payments"),
@@ -107,6 +140,11 @@ export const reserveGiftsAndCreatePayment = internalMutation({
     });
 
     const total = gifts.reduce((sum, g) => sum + (g.preco ?? 0), 0);
+    const installmentCount = validateInstallmentCount(
+      args.paymentMethod,
+      args.installmentCount,
+      total
+    );
 
     const paymentId = await ctx.db.insert("payments", {
       buyerName: args.buyer.name.trim(),
@@ -116,6 +154,7 @@ export const reserveGiftsAndCreatePayment = internalMutation({
       buyerMessage: args.buyer.message?.trim() || undefined,
       amount: total,
       paymentMethod: args.paymentMethod,
+      installmentCount,
       status: "pendente",
       expiresAt,
       createdAt: now,
@@ -237,6 +276,7 @@ export const createCheckout = action({
     giftIds: v.array(v.id("gifts")),
     buyer: buyerValidator,
     paymentMethod: v.union(v.literal("PIX"), v.literal("CREDIT_CARD")),
+    installmentCount: v.optional(v.number()),
   },
   returns: v.object({ paymentId: v.id("payments") }),
   handler: async (ctx, args) => {
@@ -264,6 +304,7 @@ export const createCheckout = action({
         items: args.giftIds.map((id) => ({ giftId: id })),
         buyer: { ...args.buyer, name, email, cpf },
         paymentMethod: args.paymentMethod,
+        installmentCount: args.installmentCount,
       }
     );
 
@@ -286,6 +327,10 @@ export const createCheckout = action({
         dueDate: todayIsoDate(),
         description,
         externalReference: reservation.paymentId,
+        installmentCount:
+          args.paymentMethod === "CREDIT_CARD"
+            ? args.installmentCount ?? 1
+            : undefined,
       });
 
       let pixEncodedImage: string | undefined;
@@ -331,6 +376,7 @@ const publicPaymentValidator = v.object({
   pixPayload: v.optional(v.string()),
   pixExpirationDate: v.optional(v.string()),
   invoiceUrl: v.optional(v.string()),
+  installmentCount: v.optional(v.number()),
   expiresAt: v.optional(v.number()),
   createdAt: v.number(),
   paidAt: v.optional(v.number()),
@@ -365,6 +411,7 @@ export const getPublic = query({
       pixPayload: p.pixPayload,
       pixExpirationDate: p.pixExpirationDate,
       invoiceUrl: p.invoiceUrl,
+      installmentCount: p.installmentCount,
       expiresAt: p.expiresAt,
       createdAt: p.createdAt,
       paidAt: p.paidAt,

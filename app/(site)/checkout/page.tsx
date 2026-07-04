@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAction } from "convex/react";
 import { ArrowLeft, ArrowRight, CreditCard, Loader2, QrCode } from "lucide-react";
@@ -13,6 +13,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { useCart } from "@/components/cart/cart-provider";
 
 type PaymentMethodChoice = "PIX" | "CREDIT_CARD";
+
+const MIN_INSTALLMENT_VALUE = 5;
+const MAX_INSTALLMENTS = 12;
+
+const fieldClassName =
+  "w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl md:text-2xl";
+
+const textareaClassName =
+  "w-full bg-transparent border border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-4 py-3 font-display italic text-xl md:text-2xl";
 
 function maskCpf(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 11);
@@ -50,6 +59,7 @@ export default function CheckoutPage() {
   const [message, setMessage] = useState("");
   const [paymentMethod, setPaymentMethod] =
     useState<PaymentMethodChoice>("PIX");
+  const [installmentCount, setInstallmentCount] = useState(1);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [redirecting, setRedirecting] = useState(false);
@@ -59,6 +69,20 @@ export default function CheckoutPage() {
       router.replace("/presentes");
     }
   }, [cart.count, redirecting, router]);
+
+  const installmentOptions = useMemo(() => {
+    const maxCount = Math.min(
+      MAX_INSTALLMENTS,
+      Math.floor(cart.total / MIN_INSTALLMENT_VALUE)
+    );
+    return Array.from({ length: Math.max(1, maxCount) }, (_, i) => i + 1);
+  }, [cart.total]);
+
+  useEffect(() => {
+    if (installmentCount > installmentOptions.length) {
+      setInstallmentCount(installmentOptions.length);
+    }
+  }, [installmentCount, installmentOptions.length]);
 
   if (cart.count === 0) {
     return (
@@ -84,6 +108,8 @@ export default function CheckoutPage() {
           message: message.trim() || undefined,
         },
         paymentMethod,
+        installmentCount:
+          paymentMethod === "CREDIT_CARD" ? installmentCount : undefined,
       });
       setRedirecting(true);
       router.replace(`/checkout/${result.paymentId}`);
@@ -167,7 +193,7 @@ export default function CheckoutPage() {
                 autoComplete="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl"
+                className={fieldClassName}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -182,7 +208,7 @@ export default function CheckoutPage() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl"
+                  className={fieldClassName}
                 />
               </div>
               <div>
@@ -197,7 +223,7 @@ export default function CheckoutPage() {
                   value={cpf}
                   onChange={(e) => setCpf(maskCpf(e.target.value))}
                   placeholder="000.000.000-00"
-                  className="w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl"
+                  className={fieldClassName}
                 />
               </div>
             </div>
@@ -213,7 +239,7 @@ export default function CheckoutPage() {
                 value={phone}
                 onChange={(e) => setPhone(maskPhone(e.target.value))}
                 placeholder="(00) 00000-0000"
-                className="w-full bg-transparent border-0 border-b border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-0 py-3 h-auto font-display italic text-xl"
+                className={fieldClassName}
               />
             </div>
             <div>
@@ -226,7 +252,7 @@ export default function CheckoutPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 rows={3}
                 maxLength={500}
-                className="w-full bg-transparent border border-[hsl(var(--border))] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-0 shadow-none rounded-none px-4 py-3"
+                className={textareaClassName}
               />
             </div>
           </section>
@@ -273,6 +299,29 @@ export default function CheckoutPage() {
                 </p>
               </button>
             </div>
+
+            {paymentMethod === "CREDIT_CARD" && (
+              <div>
+                <Label htmlFor="installments" className="meta-label block mb-2">
+                  Parcelas
+                </Label>
+                <select
+                  id="installments"
+                  value={installmentCount}
+                  onChange={(e) => setInstallmentCount(Number(e.target.value))}
+                  className="w-full bg-transparent border border-[hsl(var(--border))] focus:outline-none focus:border-[hsl(var(--primary))] px-4 py-3 font-display italic text-xl md:text-2xl text-[hsl(var(--foreground))]"
+                >
+                  {installmentOptions.map((count) => {
+                    const perInstallment = cart.total / count;
+                    return (
+                      <option key={count} value={count}>
+                        {count}x de R$ {formatBRL(perInstallment)} sem juros
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            )}
           </section>
 
           {error && (
