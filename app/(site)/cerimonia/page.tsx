@@ -70,7 +70,7 @@ export default function CerimoniaPage() {
       <section className="px-[5vw] md:px-[8vw] mb-10">
         <MetaLabel className="mb-6">05 · O dia</MetaLabel>
         <h1
-          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] whitespace-nowrap"
+          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] md:whitespace-nowrap"
           style={{ fontSize: "clamp(2rem, 7vw, 7rem)", letterSpacing: "-0.04em" }}
         >
           Cerimônia &amp; Recepção
@@ -82,7 +82,7 @@ export default function CerimoniaPage() {
             icon={MapPin}
             label="Local"
             value="Paróquia Imaculada Conceição · festa no Pátio Welucci"
-            valueClassName="whitespace-nowrap md:overflow-x-auto md:[scrollbar-width:thin]"
+            valueClassName="text-balance md:whitespace-nowrap md:overflow-x-auto md:[scrollbar-width:thin]"
           />
         </div>
       </section>

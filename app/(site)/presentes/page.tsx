@@ -55,7 +55,7 @@ export default function ListaPresentesPage() {
       <section className="px-[5vw] md:px-[8vw] mb-10">
         <MetaLabel className="mb-6">09 · Lista</MetaLabel>
         <h1
-          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] whitespace-nowrap"
+          className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] md:whitespace-nowrap"
           style={{ fontSize: "clamp(2.5rem, 9vw, 8rem)", letterSpacing: "-0.04em" }}
         >
           Lista de Presentes
@@ -234,7 +234,7 @@ export default function ListaPresentesPage() {
             </div>
             <Button
               onClick={cart.open}
-              className="group gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-6 py-4"
+              className="group w-full md:w-auto whitespace-normal text-left gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-6 py-4"
             >
               <ShoppingBag className="w-4 h-4" />
               <span className="meta-label text-inherit group-hover:text-inherit">
@@ -246,8 +246,8 @@ export default function ListaPresentesPage() {
       )}
 
       <section className="px-[5vw] md:px-[8vw] mt-10">
-        <div className="border border-[hsl(var(--border))] p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center gap-6 bg-background/40">
-          <div className="flex-1">
+        <div className="border border-[hsl(var(--border))] p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center gap-6 bg-background/40 min-w-0">
+          <div className="flex-1 min-w-0">
             <MetaLabel className="mb-3">Contribuição livre</MetaLabel>
             <h3 className="font-display italic text-3xl md:text-4xl mb-2">
               Chave PIX
@@ -260,7 +260,7 @@ export default function ListaPresentesPage() {
             type="button"
             onClick={handleCopyPix}
             aria-live="polite"
-            className="group gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-8 py-5"
+            className="group w-full md:w-auto max-w-full whitespace-normal text-left gap-3 rounded-none border border-[hsl(var(--primary))] bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] h-auto px-8 py-5"
           >
             {pixCopied ? (
               <Check className="w-4 h-4" />

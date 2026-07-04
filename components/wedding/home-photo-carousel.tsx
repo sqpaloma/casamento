@@ -206,6 +206,7 @@ export default function HomePhotoCarousel({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8%" }}
       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      className="min-w-0"
     >
       {lightbox}
 
@@ -233,29 +234,30 @@ export default function HomePhotoCarousel({
         </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        onMouseEnter={pause}
-        onMouseLeave={resume}
-        onFocusCapture={pause}
-        onBlurCapture={resume}
-        role="group"
-        aria-roledescription="carrossel"
-        aria-label="Fotos do pré-wedding"
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide"
-      >
-        {slides.map((slide, slideIndex) => (
-          <div
-            key={slide.src}
-            data-home-slide
-            className="group snap-start shrink-0 basis-[calc((100%-1rem)/2)] sm:basis-[calc((100%-2rem)/3)] lg:basis-[calc((100%-3rem)/4)]"
-          >
+      <div className="w-full min-w-0 overflow-hidden">
+        <div
+          ref={scrollerRef}
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onFocusCapture={pause}
+          onBlurCapture={resume}
+          role="group"
+          aria-roledescription="carrossel"
+          aria-label="Fotos do pré-wedding"
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide"
+        >
+          {slides.map((slide, slideIndex) => (
+            <div
+              key={slide.src}
+              data-home-slide
+              className="group snap-start shrink-0 w-[calc((100vw-10vw-1rem)/2)] sm:w-[calc((100vw-10vw-2rem)/3)] lg:w-[calc((100vw-16vw-3rem)/4)]"
+            >
             <button
               type="button"
               onClick={() => setLightboxIndex(slideIndex)}
+              aria-label={`Ampliar: ${slide.alt}`}
               className="group block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))]"
             >
-              <span className="sr-only">Ampliar: {slide.alt}</span>
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border-2 border-[hsl(var(--primary))] bg-[hsl(var(--secondary))]/40 transition-colors">
                 <Image
                   src={slide.src}
@@ -268,6 +270,7 @@ export default function HomePhotoCarousel({
             </button>
           </div>
         ))}
+        </div>
       </div>
     </motion.div>
   );

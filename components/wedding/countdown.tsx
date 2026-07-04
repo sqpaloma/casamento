@@ -33,10 +33,10 @@ export default function Countdown() {
   ];
 
   return (
-    <div className="flex items-center gap-6 md:gap-10 font-mono">
+    <div className="flex flex-wrap justify-center gap-x-4 gap-y-6 sm:gap-6 md:gap-10 font-mono">
       {items.map((item) => (
         <div key={item.l} className="flex flex-col items-center">
-          <span className="text-3xl md:text-5xl font-light text-[hsl(var(--foreground))] tabular-nums">
+          <span className="text-2xl sm:text-3xl md:text-5xl font-light text-[hsl(var(--foreground))] tabular-nums">
             {pad(item.v)}
           </span>
           <span className="meta-label mt-2">{item.l}</span>

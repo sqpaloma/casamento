@@ -10,7 +10,7 @@ import { preWeddingSlides } from "@/lib/gallery-slides";
 export default function HomePage() {
   return (
     <div className="relative min-h-screen">
-      <section className="relative min-h-screen w-full flex flex-col justify-between px-[5vw] md:px-[8vw] pt-28 pb-10 overflow-hidden">
+      <section className="relative min-h-screen w-full flex flex-col justify-between px-[5vw] md:px-[8vw] pt-28 pb-16 md:pb-10 overflow-hidden">
 
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -20,8 +20,8 @@ export default function HomePage() {
         >
           <MetaLabel className="mb-4">Ele</MetaLabel>
           <h1
-            className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-            style={{ fontSize: "clamp(4rem, 13vw, 11rem)", letterSpacing: "-0.05em" }}
+            className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] max-w-full"
+            style={{ fontSize: "clamp(2.75rem, 13vw, 11rem)", letterSpacing: "-0.05em" }}
           >
             Rodrigo
           </h1>
@@ -31,20 +31,20 @@ export default function HomePage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, delay: 0.5 }}
-          className="relative z-10 self-center text-center my-6"
+          className="relative z-10 self-center text-center my-2 md:my-6"
         >
           <span
-            className="font-display italic text-[hsl(var(--primary))] block leading-none"
-            style={{ fontSize: "clamp(5rem, 16vw, 14rem)" }}
+            className="font-display italic text-[hsl(var(--primary))] block leading-none max-w-full"
+            style={{ fontSize: "clamp(3.5rem, 16vw, 14rem)" }}
           >
             &amp;
           </span>
-          <div className="flex items-center gap-4 mt-4 justify-center">
-            <span className="h-px w-10 bg-[hsl(var(--accent))]" />
-            <span className="font-mono text-xs md:text-xl tracking-[0.3em] md:tracking-[1em] text-[hsl(var(--muted-foreground))]">
+          <div className="flex items-center gap-2 sm:gap-4 mt-4 justify-center max-w-full">
+            <span className="h-px w-6 sm:w-10 bg-[hsl(var(--accent))]" />
+            <span className="font-mono text-xs md:text-xl tracking-[0.15em] sm:tracking-[0.3em] md:tracking-[1em] text-[hsl(var(--muted-foreground))]">
               05 · 09 · 2026
             </span>
-            <span className="h-px w-10 bg-[hsl(var(--accent))]" />
+            <span className="h-px w-6 sm:w-10 bg-[hsl(var(--accent))]" />
           </div>
         </motion.div>
 
@@ -52,12 +52,12 @@ export default function HomePage() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-          className="relative z-10 self-end text-right"
+          className="relative z-10 self-end text-right max-md:-translate-y-8"
         >
           <MetaLabel className="mb-4 justify-end">Ela</MetaLabel>
           <h1
-            className="font-display italic leading-[0.9] text-[hsl(var(--foreground))]"
-            style={{ fontSize: "clamp(4rem, 13vw, 11rem)", letterSpacing: "-0.05em" }}
+            className="font-display italic leading-[0.9] text-[hsl(var(--foreground))] max-w-full"
+            style={{ fontSize: "clamp(2.75rem, 14vw, 11rem)", letterSpacing: "-0.05em" }}
           >
             Paloma
           </h1>

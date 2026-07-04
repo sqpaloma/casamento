@@ -204,7 +204,7 @@ export default function PagesCarousel() {
     const canNext = offset < maxOffset - 4;
 
     return (
-        <div className="relative z-10 isolate">
+        <div className="relative z-10 isolate min-w-0">
             <div className="flex items-center justify-between mb-8">
                 <span className="meta-label">Nosso Livro</span>
                 <div className="flex items-center gap-2">
@@ -237,7 +237,7 @@ export default function PagesCarousel() {
                 onPointerUp={endDrag}
                 onPointerCancel={endDrag}
                 onClickCapture={handleClickCapture}
-                className="h-[380px] md:h-[420px] overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing select-none"
+                className="h-[380px] md:h-[420px] w-full min-w-0 overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing select-none"
             >
                 <div
                     ref={trackRef}
@@ -261,7 +261,7 @@ export default function PagesCarousel() {
                                 delay: i * 0.06,
                                 ease: [0.22, 1, 0.36, 1],
                             }}
-                            className="shrink-0 w-[78vw] sm:w-[55vw] md:w-[360px] lg:w-[380px]"
+                            className="shrink-0 w-[calc(100vw-10vw-1.5rem)] sm:w-[calc(100vw-10vw-2rem)] md:w-[360px] lg:w-[380px]"
                             onAnimationComplete={updateMetrics}
                         >
                             <Link

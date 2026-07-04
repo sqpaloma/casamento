@@ -201,7 +201,7 @@ export function GalleryCarouselSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8%" }}
       transition={{ duration: 0.65, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="mb-20 md:mb-28 last:mb-0"
+      className="mb-20 md:mb-28 last:mb-0 min-w-0"
     >
       {lightbox}
 
@@ -249,26 +249,27 @@ export function GalleryCarouselSection({
           Fotos deste momento ainda não foram adicionadas.
         </div>
       ) : (
-        <div
-          ref={scrollerRef}
-          onMouseEnter={() => { pausedRef.current = true; }}
-          onMouseLeave={() => { pausedRef.current = false; }}
-          onTouchStart={() => { pausedRef.current = true; }}
-          onTouchEnd={() => { setTimeout(() => { pausedRef.current = false; }, 3000); }}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide"
-        >
-          {slides.map((slide, slideIndex) => (
-            <div
-              key={slide.src}
-              data-gallery-slide
-              className="snap-start shrink-0 w-[calc((100%-1rem)/2)] md:w-[calc((100%-3rem)/4)]"
-            >
+        <div className="w-full min-w-0 overflow-hidden">
+          <div
+            ref={scrollerRef}
+            onMouseEnter={() => { pausedRef.current = true; }}
+            onMouseLeave={() => { pausedRef.current = false; }}
+            onTouchStart={() => { pausedRef.current = true; }}
+            onTouchEnd={() => { setTimeout(() => { pausedRef.current = false; }, 3000); }}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth scrollbar-hide"
+          >
+            {slides.map((slide, slideIndex) => (
+              <div
+                key={slide.src}
+                data-gallery-slide
+                className="snap-start shrink-0 w-[calc((100vw-10vw-1rem)/2)] md:w-[calc((100vw-16vw-3rem)/4)]"
+              >
               <button
                 type="button"
                 onClick={() => openLightbox(slideIndex)}
+                aria-label={`Ampliar: ${slide.alt}`}
                 className="group block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))] rounded-2xl"
               >
-                <span className="sr-only">Ampliar: {slide.alt}</span>
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border-2 border-[hsl(var(--primary))]/60 bg-[hsl(var(--secondary))]/40 transition-all group-hover:border-[hsl(var(--primary))] group-hover:shadow-lg group-hover:shadow-[hsl(var(--primary))]/10">
                   <Image
                     src={slide.src}
@@ -280,7 +281,8 @@ export function GalleryCarouselSection({
                 </div>
               </button>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </motion.section>

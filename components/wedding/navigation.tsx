@@ -164,7 +164,7 @@ export default function Navigation() {
                                 </ul>
                             </nav>
 
-                            <footer className="flex shrink-0 items-end justify-between pb-2 pt-1">
+                            <footer className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-end sm:justify-between pb-2 pt-1">
                                 <span className="meta-label">
                                     Paloma &amp; Rodrigo · 05 · Set · 2026
                                 </span>

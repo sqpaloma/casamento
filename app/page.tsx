@@ -210,7 +210,7 @@ export default function ThresholdPage() {
 
         <div className="w-full flex items-center justify-between">
           <span className="meta-label">
-            {reveal ? "Lacre — Abrindo convite" : "Lacre — Aguardando abertura"}
+            {reveal ? "Abrindo convite" : "Aguardando abertura"}
           </span>
           <span className="meta-label">Eternal Archive</span>
         </div>
