@@ -123,7 +123,7 @@ export default function ListaPresentesPage() {
                       {item.imagem && (
                         <div
                           aria-hidden
-                          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-25 transition-opacity duration-500"
+                          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25 group-hover:opacity-40 transition-opacity duration-500"
                           style={{ backgroundImage: `url(${item.imagem})` }}
                         />
                       )}

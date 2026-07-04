@@ -105,13 +105,10 @@ export default function ThresholdPage() {
       <motion.div
         animate={revealAnimate}
         transition={{ duration: revealDuration, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 min-h-screen flex flex-col items-center justify-between px-[5vw] md:px-[8vw] py-10"
+        className="relative z-10 min-h-screen flex flex-col items-center justify-between px-[5vw] md:px-[8vw] py-20"
       >
         <div className="w-full flex items-center justify-between">
-          <span className="meta-label">Convite · N° 001</span>
-          <span className="meta-label hidden md:inline">
-            05.09.2026 · São Paulo
-          </span>
+        
         </div>
 
         <div className="flex flex-col items-center text-center max-w-3xl">
@@ -119,7 +116,7 @@ export default function ThresholdPage() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="meta-label mb-10"
+            className="meta-label mb-10 text-xl"
           >
             Você está convidado para
           </motion.div>
@@ -208,12 +205,7 @@ export default function ThresholdPage() {
           </div>
         </motion.div>
 
-        <div className="w-full flex items-center justify-between">
-          <span className="meta-label">
-            {reveal ? "Abrindo convite" : "Aguardando abertura"}
-          </span>
-          <span className="meta-label">Eternal Archive</span>
-        </div>
+       
       </motion.div>
 
       {reveal && (

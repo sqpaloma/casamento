@@ -125,7 +125,7 @@ export default function HomePage() {
               Dress code
             </span>
             <p className="mt-1 text-sm md:text-base tracking-[0.04em]">
-              Traje de Gala
+              Traje Social
             </p>
           </div>
         </div>
