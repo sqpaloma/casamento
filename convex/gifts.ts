@@ -29,7 +29,9 @@ export const listPublic = query({
       .withIndex("by_order")
       .order("asc")
       .collect();
-    return gifts;
+    return gifts.filter(
+      (g) => typeof g.preco === "number" && g.preco > 0,
+    );
   },
 });
 
