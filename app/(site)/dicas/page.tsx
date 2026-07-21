@@ -16,8 +16,8 @@ const tips: Tip[] = [
   {
     icon: Shirt,
     title: "Dress Code",
-    subtitle: "Black Tie",
-    text: "Pedimos traje Black Tie. Para elas, vestidos longos. Para eles, smoking ou terno escuro com gravata. Pedimos apenas que evitem a cor branca, reservada à noiva.",
+    subtitle: "Social",
+    text: "Pedimos traje Social. Para elas, vestidos longos. Para eles, smoking ou terno escuro com gravata. Pedimos apenas que evitem a cor branca, reservada à noiva.",
   },
   {
     icon: Hotel,

@@ -28,7 +28,7 @@ const schedule: ScheduleItem[] = [
     title: "Cerimônia",
     place: "Paróquia Imaculada Conceição",
     address: "Av. Brigadeiro Luís Antônio, 2071 · Bela Vista, São Paulo",
-    dress: "Black Tie",
+    dress: "Social",
     description:
       "O momento em que dois viram um. Chegue com alguns minutos de antecedência para acomodar-se.",
     mapsUrl: PAROQUIA_MAPS_URL,
@@ -38,7 +38,7 @@ const schedule: ScheduleItem[] = [
     title: "Coquetel",
     place: "Pátio Welucci",
     address: "R. Texas, 243 · Brooklin, São Paulo",
-    dress: "Black Tie",
+    dress: "Social",
     description:
       "Champagne, canapés e o pôr-do-sol enquanto os noivos finalizam as fotos.",
     mapsUrl: PATIO_WELLUCCI_MAPS_URL,
@@ -48,7 +48,7 @@ const schedule: ScheduleItem[] = [
     title: "Recepção",
     place: "Salão — Pátio Welucci",
     address: "R. Texas, 243 · Brooklin, São Paulo",
-    dress: "Black Tie",
+    dress: "Social",
     description:
       "Jantar harmonizado, discursos e as primeiras valsas da nova família.",
     mapsUrl: PATIO_WELLUCCI_MAPS_URL,
@@ -58,7 +58,7 @@ const schedule: ScheduleItem[] = [
     title: "Pista",
     place: "Terraço — Pátio Welucci",
     address: "R. Texas, 243 · Brooklin, São Paulo",
-    dress: "Black Tie · sapatos confortáveis recomendados",
+    dress: "Social · sapatos confortáveis recomendados",
     description: "Bar aberto, DJ e a madrugada toda para celebrar.",
     mapsUrl: PATIO_WELLUCCI_MAPS_URL,
   },
